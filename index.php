@@ -2,7 +2,7 @@
 $pagina = 'home';
 $titulo = 'Home';
 require __DIR__ . '/includes/header.php';
-$cenas = ['inicio' => 'O museu', 'guia' => 'Dias', 'valores' => 'Valores', 'kids' => 'Kids', 'interesses' => 'Interesses'];
+$cenas = ['inicio' => 'Início', 'museu' => 'O museu', 'guia' => 'Dias', 'valores' => 'Valores', 'kids' => 'Kids', 'interesses' => 'Interesses'];
 $ICONES = [
     'pa'     => '<svg viewBox="0 0 24 24"><path d="M14 4l6 6M17 7L9 15"/><path d="M9 15l-4.5 1.5a2 2 0 0 0-1 3l1 1a2 2 0 0 0 3-1L9 15z"/></svg>',
     'livro'  => '<svg viewBox="0 0 24 24"><path d="M3 5c3-1.5 6-1.5 9 0v14c-3-1.5-6-1.5-9 0zM21 5c-3-1.5-6-1.5-9 0v14c3-1.5 6-1.5 9 0z"/></svg>',
@@ -18,12 +18,44 @@ $ICONES = [
 
 <!-- ============ 1 · O MUSEU (cenário caverna) ============ -->
 <section class="scene hero" id="inicio" data-scene="cave">
+  <figure class="hero__photo" aria-hidden="true">
+    <img src="assets/img/hero-cranios.jpg" alt="" width="1920" height="1080">
+  </figure>
+  <span class="hero__frame" aria-hidden="true"></span>
+
   <div class="hero__inner">
     <div class="hero__text">
+      <?php [$hAbre, $mAbre] = explode(":", $HORARIOS[3]["abre"]); [$hFecha, $mFecha] = explode(":", $HORARIOS[3]["fecha"]); ?>
+      <p class="hero__hours reveal">Exposição: <?= (int) $hAbre ?><sup><?= $mAbre ?></sup> – <?= (int) $hFecha ?><sup><?= $mFecha ?></sup></p>
+      <h1 class="hero__title reveal">Bem-vindo ao<br>Museu Paleo</h1>
+      <p class="hero__sub reveal"><span>Ossos que contam</span> a história da Terra</p>
+      <a class="btn-line reveal" href="#guia">Planeje sua visita</a>
+    </div>
+
+    <aside class="hero__cards" aria-label="Galerias em destaque">
+      <?php foreach (array_slice($DESTAQUES, 0, 3) as $i => $d): ?>
+        <a class="hero-card reveal" href="exposicoes.php" style="--i:<?= $i + 2 ?>">
+          <img class="hero-card__bg" src="assets/img/<?= e($d["foto"]) ?>" alt="">
+          <strong><?= e($d["titulo"]) ?></strong>
+          <span>Visitar galeria <i aria-hidden="true">⟶</i></span>
+        </a>
+      <?php endforeach; ?>
+    </aside>
+  </div>
+
+  <a class="scroll-hint" href="#museu" aria-label="Rolar para conhecer o museu">
+    <span></span>role para escavar
+  </a>
+</section>
+
+<!-- ============ 1b · SOBRE O MUSEU (mesmo cenário) ============ -->
+<section class="scene" id="museu" data-scene="cave">
+  <div class="wrap about-intro">
+    <div>
       <p class="eyebrow reveal">Paleontologia · desde 1966</p>
-      <h1 class="hero__title reveal">
-        Os <span class="hl">ossos</span> guardam<br>a memória da Terra.
-      </h1>
+      <h2 class="about-intro__title reveal">Os <em>ossos</em> guardam a memória da Terra.</h2>
+    </div>
+    <div>
       <p class="hero__lead reveal">
         O Museu Paleo reúne mais de 12 mil fósseis de dinossauros, mamutes e criaturas
         dos mares antigos. Aqui, cada fêmur, crânio e vértebra é uma pista: o que
@@ -43,16 +75,7 @@ $ICONES = [
         <div><dt data-count="3">3</dt><dd>galerias permanentes</dd></div>
       </dl>
     </div>
-
-    <figure class="hero__bone">
-      <img src="assets/img/cranio-foto.png" alt="Crânio fossilizado de tiranossaurídeo com a boca aberta, sobre fundo escuro" width="411" height="453">
-      <figcaption>Crânio de tiranossaurídeo · Cretáceo</figcaption>
-    </figure>
   </div>
-
-  <a class="scroll-hint" href="#guia" aria-label="Rolar para os dias de funcionamento">
-    <span></span>role para escavar
-  </a>
 </section>
 
 <!-- ============ 2 · DIAS (cenário floresta jurássica) ============ -->

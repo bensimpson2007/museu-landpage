@@ -33,7 +33,10 @@ if (!eh_local()) {
       <h1>Painel do <em>GitHub</em></h1>
       <a class="painel__repo" href="#" target="_blank" rel="noopener" hidden></a>
     </div>
-    <button class="btn btn--ghost painel__refresh" type="button">Atualizar informações</button>
+    <div class="painel__actions">
+      <a class="btn btn--solid" href="index.php">← Ir para o site do museu</a>
+      <button class="btn btn--ghost painel__refresh" type="button">Atualizar informações</button>
+    </div>
   </header>
 
   <div class="painel__chips">

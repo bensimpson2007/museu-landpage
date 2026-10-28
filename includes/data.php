@@ -104,9 +104,9 @@ $ACERVO = [
 
 /* ---------- Destaques da home (seção Interesses) ---------- */
 $DESTAQUES = [
-    ['titulo' => 'Gigantes do Cretáceo',  'img' => 'cranio-rex.svg', 'texto' => 'Frente a frente com o crânio do maior predador terrestre e a garra que inspirou lendas.', 'tag' => 'Galeria 1'],
-    ['titulo' => 'Era do Gelo: Mamutes',  'img' => 'mamute.svg',     'texto' => 'Um mamute-lanoso montado osso a osso, com presas de quase quatro metros.', 'tag' => 'Galeria 2'],
-    ['titulo' => 'Mares Antigos',         'img' => 'amonite.svg',    'texto' => 'Amonites, trilobitas e peixes de 500 milhões de anos, quando tudo ainda era oceano.', 'tag' => 'Galeria 3'],
+    ['titulo' => 'Gigantes do Cretáceo',  'img' => 'cranio-rex.svg', 'foto' => 'card-cretaceo.jpg', 'texto' => 'Frente a frente com o crânio do maior predador terrestre e a garra que inspirou lendas.', 'tag' => 'Galeria 1'],
+    ['titulo' => 'Era do Gelo: Mamutes',  'img' => 'mamute.svg', 'foto' => 'card-gelo.jpg',     'texto' => 'Um mamute-lanoso montado osso a osso, com presas de quase quatro metros.', 'tag' => 'Galeria 2'],
+    ['titulo' => 'Mares Antigos',         'img' => 'amonite.svg', 'foto' => 'card-mares.jpg',    'texto' => 'Amonites, trilobitas e peixes de 500 milhões de anos, quando tudo ainda era oceano.', 'tag' => 'Galeria 3'],
     ['titulo' => 'Laboratório Aberto',    'img' => 'vertebras.svg',  'texto' => 'Pelo vidro, veja nossos paleontólogos limpando e montando ossos recém-chegados de campo.', 'tag' => 'Ao vivo'],
 ];
 
@@ -127,7 +127,7 @@ function indice_busca(): array
     global $HORARIOS, $PRECOS, $PRECO_NOTAS, $KIDS, $ACERVO, $DESTAQUES, $LINHA_DO_TEMPO, $CATEGORIAS;
 
     $idx = [
-        ['titulo' => 'Sobre o museu',   'url' => 'index.php#inicio',     'secao' => 'Home',       'texto' => 'Museu de paleontologia dedicado à pré-história: dinossauros, mamutes e os ossos e fósseis que restaram desses animais.', 'chaves' => 'home inicio museu paleontologia pre-historia ossos fosseis esqueleto'],
+        ['titulo' => 'Sobre o museu',   'url' => 'index.php#museu',     'secao' => 'Home',       'texto' => 'Museu de paleontologia dedicado à pré-história: dinossauros, mamutes e os ossos e fósseis que restaram desses animais.', 'chaves' => 'home inicio museu paleontologia pre-historia ossos fosseis esqueleto'],
         ['titulo' => 'Guia de Horários','url' => 'index.php#guia',       'secao' => 'Guia',       'texto' => 'Dias e horários em que o museu está aberto. Segunda-feira fechado.', 'chaves' => 'horario horarios dias aberto fechado funcionamento guia visita agenda trabalho'],
         ['titulo' => 'Valores e ingressos', 'url' => 'index.php#valores','secao' => 'Valores',    'texto' => 'Inteira, meia-entrada, família e kids. Terça gratuita.', 'chaves' => 'preco precos valor valores ingresso ingressos comprar meia inteira gratis gratuito'],
         ['titulo' => 'Paleo Kids',      'url' => 'index.php#kids',       'secao' => 'Kids',       'texto' => 'Área de brincadeira e de histórias para crianças.', 'chaves' => 'kids criancas infantil brincadeira historia escola familia'],

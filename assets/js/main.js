@@ -63,7 +63,7 @@
 
 
   /* ---------- Cenários (troca de cor a cada seção) ---------- */
-  const navPorSecao = { inicio: 'home', guia: 'guia', valores: 'valores', kids: 'kids', interesses: 'interesses' };
+  const navPorSecao = { inicio: 'home', museu: 'home', guia: 'guia', valores: 'valores', kids: 'kids', interesses: 'interesses' };
   const cenas = $$('main [data-scene], .footer[data-scene]');
   const trocarCena = new IntersectionObserver((entradas) => {
     entradas.forEach((en) => {

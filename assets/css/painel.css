@@ -5,6 +5,7 @@
 
 .painel__head { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 20px; }
 .painel__head h1 { font-size: clamp(2.4rem, 5vw, 3.6rem); margin: 14px 0 8px; }
+.painel__actions { display: flex; flex-wrap: wrap; gap: 12px; }
 .painel__repo { color: var(--muted); font-size: .92rem; border-bottom: 1px dashed var(--line); transition: color .3s, border-color .3s; }
 .painel__repo:hover { color: var(--accent); border-color: var(--accent); }
 
