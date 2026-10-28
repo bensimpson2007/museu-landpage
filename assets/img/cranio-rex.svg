@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 260"><defs><linearGradient id="b" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#f3e9d2"/><stop offset=".55" stop-color="#d7c29c"/><stop offset="1" stop-color="#9c8158"/></linearGradient><filter id="f" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="3" seed="3" result="w"/><feDisplacementMap in="SourceGraphic" in2="w" scale="5" xChannelSelector="R" yChannelSelector="G" result="s"/><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="8" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 .32 0 0 0 0 .24 0 0 0 0 .14 0 0 0 2.2 -1.15" result="d"/><feComposite in="d" in2="s" operator="in" result="di"/><feMerge><feMergeNode in="s"/><feMergeNode in="di"/></feMerge></filter></defs>
+<g filter="url(#f)" fill="url(#b)">
+<path d="M28,148 C35,118 85,100 150,88 C205,74 255,52 305,56 C345,60 372,84 376,118 C379,146 362,166 335,172 C300,170 270,166 240,163 C180,160 110,158 60,160 C42,160 30,156 28,148 Z"/>
+<path d="M60,174 C110,172 180,174 240,178 C275,180 305,184 330,186 C335,198 320,214 295,220 C240,228 160,216 100,202 C75,196 60,188 60,174 Z"/>
+</g>
+<g fill="#efe3c8" stroke="#8a7352" stroke-width="1"><path d="M45,158 l10,1 l-4,15z M63,158 l10,1 l-4,17z M81,158 l10,1 l-4,18z M99,159 l10,1 l-4,18z M117,159 l10,1 l-4,18z M135,159 l10,1 l-4,17z M153,160 l10,1 l-4,16z M171,160 l10,1 l-4,14z M189,160 l10,1 l-4,12z M207,161 l10,1 l-4,10z "/><path d="M72,176 l10,0 l-5,-14z M90,176 l10,0 l-5,-15z M108,176 l10,0 l-5,-15z M126,177 l10,0 l-5,-15z M144,177 l10,0 l-5,-14z M162,177 l10,0 l-5,-13z M180,178 l10,0 l-5,-12z M198,178 l10,0 l-5,-10z "/></g>
+<g fill="#1d150e">
+<ellipse cx="70" cy="128" rx="16" ry="8" transform="rotate(-18 70 128)"/>
+<path d="M130,135 C140,110 170,100 200,105 C210,120 200,140 175,145 C155,148 135,145 130,135Z"/>
+<path d="M236,100 C238,84 262,80 268,94 C272,106 262,122 250,126 C240,120 235,110 236,100Z"/>
+<path d="M290,112 C302,100 330,104 340,124 C336,148 312,158 298,150 C288,140 286,124 290,112Z"/>
+<ellipse cx="262" cy="200" rx="24" ry="8" transform="rotate(4 262 200)"/>
+</g>
+<path fill="none" stroke="#6e5838" stroke-width="2" stroke-linecap="round" d="M105,112 C130,98 180,88 220,78 M222,140 C240,150 270,150 290,156 M320,72 q10,20 4,40 M150,198 q40,10 80,8"/>
+</svg>

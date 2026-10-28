@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 420 220"><defs><linearGradient id="b" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#f3e9d2"/><stop offset=".55" stop-color="#d7c29c"/><stop offset="1" stop-color="#9c8158"/></linearGradient><filter id="f" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="3" seed="3" result="w"/><feDisplacementMap in="SourceGraphic" in2="w" scale="5" xChannelSelector="R" yChannelSelector="G" result="s"/><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="8" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 .32 0 0 0 0 .24 0 0 0 0 .14 0 0 0 2.2 -1.15" result="d"/><feComposite in="d" in2="s" operator="in" result="di"/><feMerge><feMergeNode in="s"/><feMergeNode in="di"/></feMerge></filter><g id="v"><rect x="-24" y="-17" width="48" height="34" rx="11"/><path d="M-10,-14 L-6,-66 L8,-64 L10,-14Z"/><path d="M-30,-6 L-48,-14 L-46,-2 L-26,4Z"/><path d="M-6,15 L0,46 L6,15Z"/></g></defs>
+<g filter="url(#f)" fill="url(#b)">
+<use href="#v" transform="translate(60 120) rotate(-6)"/>
+<use href="#v" transform="translate(122 116) rotate(-2) scale(.93)"/>
+<use href="#v" transform="translate(180 116) rotate(2) scale(.86)"/>
+<use href="#v" transform="translate(234 120) rotate(6) scale(.78)"/>
+<use href="#v" transform="translate(282 127) rotate(10) scale(.7)"/>
+<use href="#v" transform="translate(325 136) rotate(14) scale(.62)"/>
+<use href="#v" transform="translate(362 146) rotate(18) scale(.54)"/>
+</g>
+<g fill="#1d150e" opacity=".6"><circle cx="60" cy="120" r="5"/><circle cx="122" cy="116" r="4.5"/><circle cx="180" cy="116" r="4"/><circle cx="234" cy="120" r="3.5"/><circle cx="282" cy="127" r="3"/></g>
+</svg>

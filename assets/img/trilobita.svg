@@ -1,0 +1,11 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 260 320"><defs><linearGradient id="b" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#f3e9d2"/><stop offset=".55" stop-color="#d7c29c"/><stop offset="1" stop-color="#9c8158"/></linearGradient><filter id="f" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="3" seed="3" result="w"/><feDisplacementMap in="SourceGraphic" in2="w" scale="5" xChannelSelector="R" yChannelSelector="G" result="s"/><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="8" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 .32 0 0 0 0 .24 0 0 0 0 .14 0 0 0 2.2 -1.15" result="d"/><feComposite in="d" in2="s" operator="in" result="di"/><feMerge><feMergeNode in="s"/><feMergeNode in="di"/></feMerge></filter></defs>
+<g filter="url(#f)" fill="url(#b)">
+<path d="M38,114 C38,46 222,46 222,114 Z"/><path d="M40,110 L28,170 L58,114Z"/><path d="M220,110 L232,170 L202,114Z"/>
+<rect x="42" y="116" width="176" height="10" rx="5"/><rect x="44.5" y="128" width="171" height="10" rx="5"/><rect x="47" y="140" width="166" height="10" rx="5"/><rect x="49.5" y="152" width="161" height="10" rx="5"/><rect x="52" y="164" width="156" height="10" rx="5"/><rect x="54.5" y="176" width="151" height="10" rx="5"/><rect x="57" y="188" width="146" height="10" rx="5"/><rect x="59.5" y="200" width="141" height="10" rx="5"/><rect x="62" y="212" width="136" height="10" rx="5"/><rect x="64.5" y="224" width="131" height="10" rx="5"/>
+<path d="M72,238 C72,300 188,300 188,238 Z"/>
+</g>
+<ellipse cx="130" cy="86" rx="22" ry="30" fill="#c9b28c" stroke="#6e5838" stroke-width="2"/>
+<g fill="#1d150e"><path d="M78,92 q10,-14 22,-2 q-10,4 -22,2z"/><path d="M182,92 q-10,-14 -22,-2 q10,4 22,2z"/></g>
+<path fill="none" stroke="#6e5838" stroke-width="3" stroke-linecap="round" d="M108,116 V292 M152,116 V292"/>
+<path fill="none" stroke="#6e5838" stroke-width="2" stroke-linecap="round" d="M84,254 q46,14 92,0 M92,270 q38,10 76,0"/>
+</svg>

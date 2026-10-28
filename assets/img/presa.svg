@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 240"><defs><linearGradient id="b" x1="0" y1="0" x2="0.3" y2="1"><stop offset="0" stop-color="#f3e9d2"/><stop offset=".55" stop-color="#d7c29c"/><stop offset="1" stop-color="#9c8158"/></linearGradient><filter id="f" x="-10%" y="-10%" width="120%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".04" numOctaves="3" seed="3" result="w"/><feDisplacementMap in="SourceGraphic" in2="w" scale="5" xChannelSelector="R" yChannelSelector="G" result="s"/><feTurbulence type="fractalNoise" baseFrequency=".85" numOctaves="2" seed="8" result="n"/><feColorMatrix in="n" type="matrix" values="0 0 0 0 .32 0 0 0 0 .24 0 0 0 0 .14 0 0 0 2.2 -1.15" result="d"/><feComposite in="d" in2="s" operator="in" result="di"/><feMerge><feMergeNode in="s"/><feMergeNode in="di"/></feMerge></filter></defs>
+<g filter="url(#f)" fill="url(#b)">
+<path d="M28,196 C80,232 262,232 342,140 C366,110 372,70 356,38 C362,80 342,122 302,152 C232,198 90,196 40,166 Z"/>
+</g>
+<path fill="none" stroke="#6e5838" stroke-width="2" stroke-linecap="round" d="M60,190 C130,212 250,206 318,150 M110,200 C180,208 260,190 330,128 M200,200 C260,184 310,150 345,100"/>
+<g fill="none" stroke="#6e5838" stroke-width="2"><ellipse cx="34" cy="181" rx="9" ry="16"/><ellipse cx="34" cy="181" rx="5" ry="10"/></g>
+</svg>
