@@ -19,7 +19,7 @@ $ICONES = [
 <!-- ============ 1 · O MUSEU (cenário caverna) ============ -->
 <section class="scene hero" id="inicio" data-scene="cave">
   <figure class="hero__photo" aria-hidden="true">
-    <img src="assets/img/hero-cranios.jpg" alt="" width="1920" height="1080">
+    <img src="assets/img/hero-cranios.jpg" alt="" width="1920" height="1080" fetchpriority="high">
   </figure>
   <span class="hero__frame" aria-hidden="true"></span>
 
@@ -49,13 +49,14 @@ $ICONES = [
 </section>
 
 <!-- ============ 1b · SOBRE O MUSEU (mesmo cenário) ============ -->
-<section class="scene" id="museu" data-scene="cave">
+<section class="scene has-photo" id="museu" data-scene="cave">
+  <figure class="section-photo" aria-hidden="true">
+    <img src="assets/img/fundo-museu.jpg" alt="" width="800" height="575" decoding="async">
+  </figure>
   <div class="wrap about-intro">
-    <div>
+    <div class="about-intro__text">
       <p class="eyebrow reveal">Paleontologia · desde 1966</p>
       <h2 class="about-intro__title reveal">Os <em>ossos</em> guardam a memória da Terra.</h2>
-    </div>
-    <div>
       <p class="hero__lead reveal">
         O Museu Paleo reúne mais de 12 mil fósseis de dinossauros, mamutes e criaturas
         dos mares antigos. Aqui, cada fêmur, crânio e vértebra é uma pista: o que
@@ -75,31 +76,49 @@ $ICONES = [
         <div><dt data-count="3">3</dt><dd>galerias permanentes</dd></div>
       </dl>
     </div>
+
+    <!-- Carrossel de fotos: troque as imagens em $CARROSSEL (includes/data.php) -->
+    <div class="carousel reveal" style="--i:2" role="region" aria-roledescription="carrossel" aria-label="Fotos do museu" tabindex="0">
+      <div class="carousel__track">
+        <?php foreach ($CARROSSEL as $i => $foto): ?>
+          <figure class="carousel__slide <?= $i === 0 ? "is-active" : "" ?>" role="group" aria-roledescription="slide" aria-label="<?= $i + 1 ?> de <?= count($CARROSSEL) ?>" <?= $i === 0 ? "" : "aria-hidden=\"true\"" ?>>
+            <img src="assets/img/<?= e($foto["img"]) ?>" alt="<?= e($foto["titulo"]) ?>" decoding="async">
+            <figcaption>
+              <strong><?= e($foto["titulo"]) ?></strong>
+              <span><?= e($foto["texto"]) ?></span>
+            </figcaption>
+          </figure>
+        <?php endforeach; ?>
+      </div>
+      <div class="carousel__bar">
+        <span class="carousel__count"><b>01</b> / <?= str_pad((string) count($CARROSSEL), 2, "0", STR_PAD_LEFT) ?></span>
+        <div class="carousel__dots">
+          <?php foreach ($CARROSSEL as $i => $foto): ?>
+            <button type="button" class="<?= $i === 0 ? "is-active" : "" ?>" aria-label="Ver foto <?= $i + 1 ?>"><i></i></button>
+          <?php endforeach; ?>
+        </div>
+        <div class="carousel__nav">
+          <button type="button" class="carousel__prev" aria-label="Foto anterior">←</button>
+          <button type="button" class="carousel__next" aria-label="Próxima foto">→</button>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
 <!-- ============ 2 · DIAS (cenário floresta jurássica) ============ -->
-<section class="scene" id="guia" data-scene="forest">
-  <div class="wrap">
-    <header class="section-head reveal">
-      <p class="eyebrow">Guia de horários</p>
-      <h2>Quando a pré-história está <em>de portas abertas</em></h2>
-      <p>Funcionamos de terça a domingo. A última entrada é sempre uma hora antes do fechamento —
-        reserve cerca de duas horas para ver tudo com calma.</p>
-    </header>
-
-    <div class="schedule">
-      <ul class="days">
-        <?php foreach ([2, 3, 4, 5, 6, 0, 1] as $i => $d):
-          $h = $HORARIOS[$d];
-          $hoje = $d === $status['hoje']; ?>
-          <li class="day reveal <?= $hoje ? 'is-today' : '' ?> <?= $h['abre'] ? '' : 'is-closed' ?>" style="--i:<?= $i ?>">
-            <span class="day__name"><?= e($h['dia']) ?><?= $hoje ? ' <b>hoje</b>' : '' ?></span>
-            <span class="day__hours"><?= $h['abre'] ? e("{$h['abre']} – {$h['fecha']}") : 'Fechado' ?></span>
-            <?php if ($h['nota']): ?><span class="day__note"><?= e($h['nota']) ?></span><?php endif; ?>
-          </li>
-        <?php endforeach; ?>
-      </ul>
+<section class="scene has-photo" id="guia" data-scene="forest">
+  <figure class="section-photo" aria-hidden="true">
+    <img src="assets/img/fundo-horarios.jpg" alt="" width="800" height="600" decoding="async">
+  </figure>
+  <div class="wrap guia">
+    <div class="guia__info">
+      <header class="section-head reveal">
+        <p class="eyebrow">Guia de horários</p>
+        <h2>Horário de <em>funcionamento</em></h2>
+        <p>Funcionamos de terça a domingo. A última entrada é sempre uma hora antes do fechamento —
+          reserve cerca de duas horas para ver tudo com calma.</p>
+      </header>
 
       <aside class="schedule__aside reveal">
         <div class="now <?= $status['aberto'] ? 'is-open' : '' ?>">
@@ -116,11 +135,26 @@ $ICONES = [
         </ul>
       </aside>
     </div>
+
+    <ul class="days">
+      <?php foreach ([2, 3, 4, 5, 6, 0, 1] as $i => $d):
+        $h = $HORARIOS[$d];
+        $hoje = $d === $status['hoje']; ?>
+        <li class="day reveal <?= $hoje ? 'is-today' : '' ?> <?= $h['abre'] ? '' : 'is-closed' ?>" style="--i:<?= $i ?>">
+          <span class="day__name"><?= e($h['dia']) ?><?= $hoje ? ' <b>hoje</b>' : '' ?></span>
+          <span class="day__hours"><?= $h['abre'] ? e("{$h['abre']} – {$h['fecha']}") : 'Fechado' ?></span>
+          <?php if ($h['nota']): ?><span class="day__note"><?= e($h['nota']) ?></span><?php endif; ?>
+        </li>
+      <?php endforeach; ?>
+    </ul>
   </div>
 </section>
 
 <!-- ============ 3 · VALORES (cenário rocha vulcânica) ============ -->
-<section class="scene" id="valores" data-scene="ember">
+<section class="scene has-photo" id="valores" data-scene="ember">
+  <figure class="section-photo" aria-hidden="true">
+    <img src="assets/img/fundo-valores.jpg" alt="" width="800" height="557" decoding="async">
+  </figure>
   <div class="wrap">
     <header class="section-head reveal">
       <p class="eyebrow">Valores</p>

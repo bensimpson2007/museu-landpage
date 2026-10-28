@@ -6,10 +6,10 @@
 /* Cores animáveis (a troca de cenário faz transição suave) */
 @property --accent    { syntax: '<color>'; inherits: true; initial-value: #e0a458; }
 @property --accent-2  { syntax: '<color>'; inherits: true; initial-value: #f3d9a4; }
-@property --bg        { syntax: '<color>'; inherits: true; initial-value: #0d0b09; }
+@property --bg        { syntax: "<color>"; inherits: true; initial-value: #030202; }
 
 :root {
-  --bg: #0d0b09;
+  --bg: #030202;
   --surface: rgba(255, 244, 222, .045);
   --surface-2: rgba(255, 244, 222, .08);
   --line: rgba(255, 236, 200, .12);
@@ -20,7 +20,7 @@
   --accent-2: #f3d9a4;
   --on-accent: #1a1209;
 
-  --serif: 'DM Serif Display', Georgia, serif;
+  --serif: 'Playfair Display', Georgia, serif; /* mesma fonte do "Bem-vindo ao Museu Paleo" */
   --sans: 'Manrope', system-ui, -apple-system, sans-serif;
   --ease: cubic-bezier(.2, .7, .2, 1);
   --ease-out: cubic-bezier(.16, 1, .3, 1);
@@ -31,10 +31,10 @@
 
 /* ---------- Cenários ---------- */
 body[data-scene="cave"]   { --bg: #030202; --accent: #e0a458; --accent-2: #f3d9a4; }
-body[data-scene="forest"] { --bg: #06130f; --accent: #8fd3a3; --accent-2: #d3f0d6; }
-body[data-scene="ember"]  { --bg: #170907; --accent: #ff7d4d; --accent-2: #ffc9a8; }
-body[data-scene="kids"]   { --bg: #0d0b22; --accent: #ffcf5c; --accent-2: #c9b8ff; }
-body[data-scene="amber"]  { --bg: #120d05; --accent: #f2c14e; --accent-2: #f7e2a8; }
+body[data-scene="forest"] { --accent: #8fd3a3; --accent-2: #d3f0d6; }
+body[data-scene="ember"]  { --accent: #8fd3a3; --accent-2: #d3f0d6; } /* Valores: mesmo verde dos horários */
+body[data-scene="kids"]   { --accent: #ffcf5c; --accent-2: #c9b8ff; }
+body[data-scene="amber"]  { --accent: #f2c14e; --accent-2: #f7e2a8; }
 
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; scroll-padding-top: calc(var(--header-h) - 20px); }
@@ -70,49 +70,12 @@ body.is-leaving main { transform: translateY(-10px); transition: transform .45s 
 
 /* ---------- Fundo de cenários ---------- */
 .scene-bg { position: fixed; inset: 0; z-index: -1; pointer-events: none; }
-.scene-layer { position: absolute; inset: 0; opacity: 0; transition: opacity 1.4s var(--ease); }
-body[data-scene="cave"]   [data-layer="cave"],
-body[data-scene="forest"] [data-layer="forest"],
-body[data-scene="ember"]  [data-layer="ember"],
-body[data-scene="kids"]   [data-layer="kids"],
-body[data-scene="amber"]  [data-layer="amber"] { opacity: 1; }
-
+.scene-layer { position: absolute; inset: 0; }
+/* Fundo único e fixo em todo o site (sem troca de cor ao rolar) */
 [data-layer="cave"] {
-  /* preto quase puro, igual ao fundo da foto do crânio, com luz quente atrás dele */
   background:
-    radial-gradient(38% 45% at 74% 36%, rgba(176, 84, 34, .16), transparent 75%),
-    radial-gradient(40% 40% at 10% 95%, rgba(110, 55, 22, .12), transparent 70%),
+    radial-gradient(38% 45% at 74% 36%, rgba(176, 84, 34, .10), transparent 75%),
     #030202;
-}
-[data-layer="forest"] {
-  background:
-    radial-gradient(55% 60% at 15% 20%, rgba(70, 150, 100, .22), transparent 70%),
-    radial-gradient(50% 50% at 90% 85%, rgba(30, 110, 90, .25), transparent 70%),
-    linear-gradient(180deg, #06130f, #0a1a14);
-}
-[data-layer="ember"] {
-  background:
-    radial-gradient(60% 45% at 50% 105%, rgba(255, 90, 40, .32), transparent 70%),
-    radial-gradient(35% 35% at 85% 15%, rgba(180, 60, 30, .18), transparent 70%),
-    linear-gradient(180deg, #120706, #1d0b07);
-}
-[data-layer="kids"] {
-  background:
-    radial-gradient(1.5px 1.5px at 12% 18%, #fff 50%, transparent 51%),
-    radial-gradient(1px 1px at 30% 70%, #fff 50%, transparent 51%),
-    radial-gradient(2px 2px at 64% 26%, #ffe8a8 50%, transparent 51%),
-    radial-gradient(1px 1px at 82% 58%, #fff 50%, transparent 51%),
-    radial-gradient(1.5px 1.5px at 92% 12%, #fff 50%, transparent 51%),
-    radial-gradient(1px 1px at 48% 88%, #fff 50%, transparent 51%),
-    radial-gradient(55% 55% at 80% 80%, rgba(140, 110, 255, .28), transparent 70%),
-    radial-gradient(45% 45% at 15% 30%, rgba(255, 190, 80, .14), transparent 70%),
-    linear-gradient(180deg, #0b0a1f, #141033);
-}
-[data-layer="amber"] {
-  background:
-    radial-gradient(55% 55% at 50% 40%, rgba(242, 193, 78, .16), transparent 70%),
-    radial-gradient(40% 40% at 0% 100%, rgba(150, 90, 20, .2), transparent 70%),
-    linear-gradient(180deg, #120d05, #0d0904);
 }
 .dust { position: absolute; inset: 0; width: 100%; height: 100%; }
 .grain {
@@ -217,7 +180,9 @@ main { transition: transform .45s var(--ease); }
   font-size: .78rem; font-weight: 700; letter-spacing: .22em; text-transform: uppercase; color: var(--accent);
 }
 .eyebrow::before { content: ''; width: 34px; height: 1px; background: currentColor; }
-h1, h2, h3 { font-family: var(--serif); font-weight: 400; line-height: 1.05; letter-spacing: -.01em; }
+h1, h2, h3 { font-family: var(--serif); font-weight: 600; line-height: 1.1; letter-spacing: .005em; }
+h1, h2 { text-transform: uppercase; }
+html { font-variant-numeric: lining-nums; } /* números alinhados, mais fáceis de ler */
 h1 em, h2 em { color: var(--accent); }
 .section-head { max-width: 720px; margin-bottom: 56px; }
 .section-head h2 { font-size: clamp(2.3rem, 5vw, 4rem); margin: 16px 0 18px; }
@@ -325,9 +290,83 @@ h1 em, h2 em { color: var(--accent); }
 .hero-card:hover i { transform: translateX(6px); }
 .js .hero-card.reveal { transform: translateX(60px); }
 
+/* Fundo de ponta a ponta bem escuro e desfocado (seção "O museu") */
+.has-photo { overflow: hidden; }
+.has-photo > .wrap { position: relative; z-index: 1; }
+.section-photo { position: absolute; inset: 0; z-index: 0; overflow: hidden; pointer-events: none; }
+.section-photo img {
+  width: 100%; height: 100%; object-fit: cover;
+  filter: blur(5px) brightness(.24) sepia(.5) saturate(.8);
+  transform: scale(1.08);
+}
+/* aparece suavemente assim que a foto termina de carregar */
+.js .section-photo img, .js .hero__photo img { opacity: 0; transition: opacity .8s var(--ease); }
+.js .section-photo img.is-loaded, .js .hero__photo img.is-loaded { opacity: 1; }
+.section-photo::after {
+  content: ""; position: absolute; inset: 0;
+  background: linear-gradient(180deg, #030202 0%, rgba(3, 2, 2, .35) 18%, rgba(3, 2, 2, .35) 82%, #030202 100%);
+}
+
+/* Carrossel de fotos (seção "O museu") */
+.carousel { position: relative; outline: none; width: calc(var(--foto-h) * .8); }
+.carousel__track {
+  position: relative; height: var(--foto-h); overflow: hidden; border-radius: 6px;
+  background: #0d0907; border: 1px solid rgba(160, 100, 70, .35);
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .9);
+}
+.carousel:focus-visible .carousel__track { border-color: var(--accent); }
+.carousel__slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s var(--ease); }
+.carousel__slide.is-active { opacity: 1; z-index: 1; }
+.carousel__slide img {
+  width: 100%; height: 100%; object-fit: cover; transform: scale(1.12);
+  transition: transform 6s linear; /* zoom lento enquanto a foto está na tela */
+}
+.carousel__slide.is-active img { transform: scale(1); }
+.carousel__slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(3, 2, 2, .9)); }
+.carousel__slide figcaption {
+  position: absolute; left: 26px; right: 26px; bottom: 24px; z-index: 1; display: grid; gap: 4px;
+  opacity: 0; transform: translateY(14px); transition: opacity .6s .35s, transform .8s .35s var(--ease-out);
+}
+.carousel__slide.is-active figcaption { opacity: 1; transform: none; }
+.carousel__slide strong { font-family: "Playfair Display", Georgia, serif; font-weight: 600; font-size: 1.5rem; text-transform: uppercase; letter-spacing: .02em; }
+.carousel__slide span { color: #cdbfae; font-size: .92rem; }
+
+.carousel__bar { display: flex; align-items: center; gap: 18px; margin-top: 18px; }
+.carousel__count { font-family: "Playfair Display", Georgia, serif; font-size: .95rem; color: var(--muted); min-width: 58px; }
+.carousel__count b { color: var(--ink); font-weight: 600; }
+.carousel__dots { display: flex; gap: 6px; flex: 1; }
+.carousel__dots button { flex: 1; height: 18px; display: flex; align-items: center; }
+.carousel__dots i { display: block; width: 100%; height: 2px; background: rgba(241, 232, 216, .2); position: relative; overflow: hidden; }
+.carousel__dots i::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform: scaleX(0); transform-origin: left; }
+.carousel__dots .is-done i::after { transform: scaleX(1); }
+.carousel__dots .is-active i::after { animation: progresso var(--dur, 5s) linear forwards; }
+.carousel.is-paused .carousel__dots .is-active i::after { animation-play-state: paused; }
+@keyframes progresso { to { transform: scaleX(1); } }
+.carousel__nav { display: flex; gap: 8px; }
+.carousel__nav button {
+  width: 44px; height: 44px; border: 1px solid rgba(241, 232, 216, .35); font-size: 1.1rem;
+  transition: background .3s, color .3s, border-color .3s;
+}
+.carousel__nav button:hover { background: var(--ink); color: #0b0806; border-color: var(--ink); }
+
 /* Seção logo abaixo: sobre o museu */
-.about-intro { display: grid; grid-template-columns: 1fr 1.1fr; gap: 60px; align-items: start; }
-.about-intro__title { font-size: clamp(2.4rem, 5vw, 4.2rem); margin-top: 18px; }
+/* Seção "O museu": texto + carrossel cabem numa tela só, centralizados */
+#museu { min-height: 100svh; padding: calc(var(--header-h) + 12px) 0 36px; }
+.about-intro {
+  --foto-h: clamp(320px, calc(100svh - var(--header-h) - 130px), 580px);
+  display: grid; grid-template-columns: minmax(0, 600px) auto; justify-content: center;
+  gap: clamp(40px, 5vw, 80px); align-items: center; max-width: 1280px;
+}
+.about-intro .hero__lead { font-size: 1rem; margin-bottom: 10px; }
+.about-intro .hero__cta { margin-top: 22px; }
+.about-intro .stats { margin-top: 28px; padding-top: 20px; gap: 32px; }
+.about-intro .stats dt { font-size: 2.2rem; }
+.about-intro__title { max-width: none; }
+.about-intro__title {
+  font-family: "Playfair Display", Georgia, serif; font-weight: 600; text-transform: uppercase;
+  font-size: clamp(1.9rem, 3vw, 3rem); line-height: 1.08; letter-spacing: .01em; margin: 14px 0 20px;
+}
+.about-intro__title em { color: inherit; } /* "ossos" sem cor de destaque */
 .hero__lead { color: var(--muted); font-size: 1.1rem; margin-bottom: 14px; }
 .hero__lead:first-of-type { color: var(--ink); }
 .hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
@@ -380,6 +419,23 @@ h1 em, h2 em { color: var(--accent); }
 .tips { list-style: none; display: grid; gap: 12px; color: var(--muted); font-size: .95rem; }
 .tips li { padding-left: 22px; position: relative; }
 .tips li::before { content: ''; position: absolute; left: 0; top: .7em; width: 10px; height: 4px; border-radius: 2px; background: var(--accent); }
+
+/* Guia de horários: texto + dicas à esquerda, dias à direita, tudo numa tela */
+#guia { min-height: 100svh; padding: calc(var(--header-h) + 12px) 0 32px; }
+.guia { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 4vw, 64px); align-items: center; }
+.guia .section-head { margin-bottom: 22px; }
+.guia .section-head h2 { font-size: clamp(2rem, 3.4vw, 3.2rem); margin: 12px 0 12px; font-family: "Playfair Display", Georgia, serif; font-weight: 600; text-transform: uppercase; letter-spacing: .01em; }
+.guia .section-head h2 em { font-style: normal; } /* sem itálico, igual ao "Bem-vindo ao Museu Paleo" */
+.guia .section-head p { font-size: .98rem; }
+.guia .schedule__aside { position: static; padding: 22px 26px; }
+.guia .now { padding-bottom: 14px; margin-bottom: 14px; }
+.guia .now strong { font-size: 1.35rem; }
+.guia .schedule__aside h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.guia .tips { gap: 6px; font-size: .88rem; }
+.guia .days { gap: 7px; }
+.guia .day { padding: 11px 20px; border-radius: 14px; }
+.guia .day__hours { font-size: 1.15rem; }
+.guia .day__note { font-size: .78rem; }
 
 /* ---------- Valores ---------- */
 .prices { display: grid; grid-template-columns: repeat(4, 1fr); gap: 18px; align-items: stretch; }
@@ -452,7 +508,7 @@ h1 em, h2 em { color: var(--accent); }
 
 /* ---------- Páginas internas ---------- */
 .page-hero { min-height: 72vh; }
-.page-hero h1 { font-size: clamp(2.8rem, 6.5vw, 5.8rem); margin: 18px 0 22px; max-width: 900px; }
+.page-hero h1 { font-size: clamp(2.4rem, 4.6vw, 4.2rem); margin: 18px 0 22px; max-width: 900px; }
 .page-hero p { color: var(--muted); font-size: 1.12rem; max-width: 620px; }
 .gallery-section { align-items: flex-start; padding-top: 40px; }
 
@@ -567,7 +623,7 @@ h1 em, h2 em { color: var(--accent); }
 /* ---------- Responsivo ---------- */
 @media (max-width: 1080px) {
   .prices, .highlights { grid-template-columns: repeat(2, 1fr); }
-  .schedule { grid-template-columns: 1fr; }
+  .schedule, .guia { grid-template-columns: 1fr; }
   .schedule__aside { position: static; }
   .status { display: none; }
 }
@@ -595,7 +651,10 @@ h1 em, h2 em { color: var(--accent); }
   .hero__photo img { object-position: 50% 40%; }
   .hero__sub { padding-left: 0; }
   .hero__frame, .hero__cards { display: none; }
-  .about-intro { grid-template-columns: 1fr; gap: 10px; }
+  .about-intro { grid-template-columns: 1fr; gap: 40px; }
+  #museu, #guia { min-height: 0; padding: calc(var(--header-h) + 20px) 0 90px; }
+  .carousel { width: 100%; }
+  .carousel__track { height: auto; aspect-ratio: 4 / 5; }
   .stats { gap: 26px; }
 
   .kids, .pillars { grid-template-columns: 1fr; }

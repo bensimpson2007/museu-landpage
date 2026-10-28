@@ -399,3 +399,92 @@
     })
     .catch(() => {});
 })();
+
+/* ---------- Carrossel de fotos (seção "O museu") ---------- */
+(() => {
+  const box = document.querySelector('.carousel');
+  if (!box) return;
+  const slides = [...box.querySelectorAll('.carousel__slide')];
+  const dots = [...box.querySelectorAll('.carousel__dots button')];
+  const contador = box.querySelector('.carousel__count b');
+  const reduzido = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  const DURACAO = 5000;
+  let atual = 0;
+  let timer;
+  let restante = DURACAO;
+  let inicio;
+
+  box.style.setProperty('--dur', `${DURACAO}ms`);
+
+  function ir(n) {
+    atual = (n + slides.length) % slides.length;
+    slides.forEach((s, i) => {
+      s.classList.toggle('is-active', i === atual);
+      s.setAttribute('aria-hidden', String(i !== atual));
+    });
+    dots.forEach((d, i) => {
+      d.classList.toggle('is-done', i < atual);
+      d.classList.remove('is-active');
+    });
+    void box.offsetWidth; // reinicia a barra de progresso
+    dots[atual].classList.add('is-active');
+    contador.textContent = String(atual + 1).padStart(2, '0');
+    agendar(DURACAO);
+  }
+
+  function agendar(ms) {
+    clearTimeout(timer);
+    if (reduzido || box.classList.contains('is-paused')) { restante = ms; return; }
+    restante = ms;
+    inicio = Date.now();
+    timer = setTimeout(() => ir(atual + 1), ms);
+  }
+
+  function pausar() {
+    if (box.classList.contains('is-paused')) return;
+    box.classList.add('is-paused');
+    clearTimeout(timer);
+    restante -= Date.now() - inicio;
+  }
+  function continuar() {
+    box.classList.remove('is-paused');
+    agendar(Math.max(restante, 300));
+  }
+
+  box.querySelector('.carousel__prev').addEventListener('click', () => ir(atual - 1));
+  box.querySelector('.carousel__next').addEventListener('click', () => ir(atual + 1));
+  dots.forEach((d, i) => d.addEventListener('click', () => ir(i)));
+  box.addEventListener('mouseenter', pausar);
+  box.addEventListener('mouseleave', continuar);
+  box.addEventListener('keydown', (e) => {
+    if (e.key === 'ArrowRight') ir(atual + 1);
+    if (e.key === 'ArrowLeft') ir(atual - 1);
+  });
+
+  // arrastar com o dedo no celular
+  let x0 = null;
+  box.addEventListener('touchstart', (e) => { x0 = e.touches[0].clientX; }, { passive: true });
+  box.addEventListener('touchend', (e) => {
+    if (x0 === null) return;
+    const dx = e.changedTouches[0].clientX - x0;
+    if (Math.abs(dx) > 40) ir(atual + (dx < 0 ? 1 : -1));
+    x0 = null;
+  });
+
+  // só começa a girar quando o carrossel aparece na tela
+  new IntersectionObserver(([en]) => {
+    if (en.isIntersecting) { box.classList.remove('is-paused'); ir(atual); }
+    else pausar();
+  }, { threshold: 0.3 }).observe(box);
+  box.classList.add('is-paused');
+})();
+
+/* ---------- Fotos de fundo: mostra com um fade assim que carregam ---------- */
+document.querySelectorAll('.section-photo img, .hero__photo img').forEach((img) => {
+  const pronto = () => img.classList.add('is-loaded');
+  if (img.complete && img.naturalWidth) pronto();
+  else {
+    img.addEventListener('load', pronto, { once: true });
+    img.addEventListener('error', pronto, { once: true });
+  }
+});

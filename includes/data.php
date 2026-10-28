@@ -110,6 +110,17 @@ $DESTAQUES = [
     ['titulo' => 'Laboratório Aberto',    'img' => 'vertebras.svg',  'texto' => 'Pelo vidro, veja nossos paleontólogos limpando e montando ossos recém-chegados de campo.', 'tag' => 'Ao vivo'],
 ];
 
+/* ---------- Carrossel de fotos da Home (seção "O museu") ----------
+ * Fotos provisórias: troque 'img' pelo nome do arquivo em assets/img/ quando tiver as suas.
+ * Dá para adicionar ou remover itens à vontade.
+ */
+$CARROSSEL = [
+    ['img' => 'card-cretaceo.jpg', 'titulo' => 'Galeria dos Gigantes',  'texto' => 'Crânios e garras do Cretáceo, frente a frente.'],
+    ['img' => 'card-gelo.jpg',     'titulo' => 'Era do Gelo',           'texto' => 'Um mamute-lanoso montado osso a osso.'],
+    ['img' => 'card-mares.jpg',    'titulo' => 'Mares Antigos',         'texto' => 'Mandíbulas e conchas de oceanos desaparecidos.'],
+    ['img' => 'hero-cranios.jpg',  'titulo' => 'Nossos ancestrais',     'texto' => 'Crânios que contam a origem da humanidade.'],
+];
+
 /* ---------- História (Sobre Nós) ---------- */
 $LINHA_DO_TEMPO = [
     ['ano' => '1958', 'titulo' => 'Uma caixa de ossos',      'texto' => 'A paleontóloga Helena Ravel guarda no porão de casa as primeiras peças encontradas no interior do estado.'],
