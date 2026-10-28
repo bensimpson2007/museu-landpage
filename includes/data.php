@@ -202,6 +202,14 @@ function buscar(string $q, int $limite = 8): array
     return array_slice($resultados, 0, $limite);
 }
 
+/** True quando o site está rodando no próprio computador (php -S localhost). */
+function eh_local(): bool
+{
+    $ip = $_SERVER['REMOTE_ADDR'] ?? '';
+    $host = strtolower(preg_replace('/:\d+$/', '', $_SERVER['HTTP_HOST'] ?? ''));
+    return in_array($ip, ['127.0.0.1', '::1'], true) && in_array($host, ['localhost', '127.0.0.1', '[::1]'], true);
+}
+
 function e(string $s): string
 {
     return htmlspecialchars($s, ENT_QUOTES, 'UTF-8');

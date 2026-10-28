@@ -386,3 +386,16 @@
     requestAnimationFrame(desenhar);
   }
 })();
+
+/* ---------- Botão do painel do GitHub: mostra quantos arquivos mudaram ---------- */
+(() => {
+  const badge = document.querySelector('.dev-sync__badge');
+  if (!badge) return;
+  fetch('sync.php', { method: 'POST', headers: { 'X-Museu-Sync': '1' }, body: new URLSearchParams({ acao: 'status' }) })
+    .then((r) => r.json())
+    .then(({ arquivos }) => {
+      badge.hidden = !arquivos.length;
+      badge.textContent = arquivos.length;
+    })
+    .catch(() => {});
+})();

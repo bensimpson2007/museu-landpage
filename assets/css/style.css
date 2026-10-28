@@ -592,3 +592,18 @@ h1 em, h2 em { color: var(--accent); }
   *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
   .js .reveal { opacity: 1; transform: none; filter: none; }
 }
+
+/* ---------- Botão do painel do GitHub (só aparece em localhost) ---------- */
+.dev-sync {
+  position: fixed; right: 18px; bottom: 18px; z-index: 60;
+  display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
+  background: rgba(20, 16, 12, .9); border: 1px solid var(--line);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, .5); opacity: .7;
+  transition: opacity .3s, border-color .3s, transform .4s var(--ease-out);
+}
+.dev-sync:hover, .dev-sync:focus-visible { opacity: 1; border-color: var(--accent); transform: rotate(-30deg); }
+.dev-sync svg { width: 18px; height: 18px; fill: none; stroke: var(--accent); stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.dev-sync__badge {
+  position: absolute; top: -4px; right: -4px; min-width: 18px; height: 18px; padding: 0 5px; border-radius: 999px;
+  background: var(--accent); color: var(--on-accent); font-size: .68rem; font-weight: 800; line-height: 18px; text-align: center;
+}

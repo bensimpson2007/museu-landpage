@@ -29,6 +29,13 @@
   <p class="footer__copy">© <?= date('Y') ?> <?= MUSEU_NOME ?> · Projeto fictício de estudo</p>
 </footer>
 
+<?php if (eh_local()): /* ferramenta de desenvolvimento: não aparece fora do seu computador */ ?>
+<a class="dev-sync" href="painel.php" target="_blank" rel="noopener" title="Painel do GitHub (abre em nova aba)" aria-label="Abrir painel do GitHub em nova aba">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 12a8 8 0 0 1 14-5.3M20 12a8 8 0 0 1-14 5.3"/><path d="M18 3v4h-4M6 21v-4h4"/></svg>
+  <span class="dev-sync__badge" hidden></span>
+</a>
+<?php endif; ?>
+
 <script src="assets/js/main.js" defer></script>
 </body>
 </html>
