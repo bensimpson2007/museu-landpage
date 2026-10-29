@@ -15,7 +15,7 @@
     if (!a || e.defaultPrevented || e.button !== 0 || e.metaKey || e.ctrlKey || e.shiftKey || a.target === '_blank') return;
     const url = new URL(a.href, location.href);
     if (url.origin !== location.origin) return;
-    const caminho = (p) => p.replace(/index\.php$/, '');
+    const caminho = (p) => p.replace(/index\.html$/, '');
     const mesmaPagina = caminho(url.pathname) === caminho(location.pathname) && url.search === location.search;
     if (mesmaPagina) {
       // âncora na mesma página: rolagem suave + destaque
@@ -170,12 +170,11 @@
     setTimeout(() => { if (!caixa.classList.contains('is-open')) caixa.hidden = true; }, 300);
   }
 
-  async function buscar(q) {
+  function buscar(q) {
     ultimaBusca = q;
     try {
-      const r = await fetch(`search.php?format=json&q=${encodeURIComponent(q)}`);
-      const dados = await r.json();
-      if (q !== ultimaBusca) return; // chegou resposta antiga
+      // Versão sem PHP: a busca roda aqui no navegador, sobre o índice de assets/js/dados.js
+      const dados = { resultados: window.buscarNoSite(q, 8) };
       const termos = semAcento(q).split(/[\s-]+/).filter((t) => t.length >= 2);
       if (!dados.resultados.length) {
         caixa.innerHTML = `<p class="search__empty">Nenhum fóssil encontrado para “${escapar(q)}”. Tente “mamute”, “terça” ou “kids”.</p>`;
@@ -186,12 +185,12 @@
             <strong>${marcar(r.titulo, termos)}</strong>
             <small>${marcar(r.texto, termos)}</small>
           </a>`).join('') +
-          `<a class="search__more" href="search.php?q=${encodeURIComponent(q)}">Ver todos os resultados</a>`;
+          `<a class="search__more" href="busca.html?q=${encodeURIComponent(q)}">Ver todos os resultados</a>`;
       }
       ativo = -1;
       abrirCaixa();
     } catch {
-      caixa.innerHTML = '<p class="search__empty">Busca indisponível. Abra o site pelo servidor PHP.</p>';
+      caixa.innerHTML = '<p class="search__empty">Busca indisponível no momento.</p>';
       abrirCaixa();
     }
   }
@@ -387,19 +386,6 @@
   }
 })();
 
-/* ---------- Botão do painel do GitHub: mostra quantos arquivos mudaram ---------- */
-(() => {
-  const badge = document.querySelector('.dev-sync__badge');
-  if (!badge) return;
-  fetch('sync.php', { method: 'POST', headers: { 'X-Museu-Sync': '1' }, body: new URLSearchParams({ acao: 'status' }) })
-    .then((r) => r.json())
-    .then(({ arquivos }) => {
-      badge.hidden = !arquivos.length;
-      badge.textContent = arquivos.length;
-    })
-    .catch(() => {});
-})();
-
 /* ---------- Carrossel de fotos (seção "O museu") ---------- */
 (() => {
   const box = document.querySelector('.carousel');
@@ -488,3 +474,84 @@ document.querySelectorAll('.section-photo img, .hero__photo img').forEach((img) 
     img.addEventListener('error', pronto, { once: true });
   }
 });
+
+/* =========================================================
+   O QUE O PHP FAZIA NO SERVIDOR, AGORA FEITO NO NAVEGADOR
+   ========================================================= */
+
+/* ---------- Busca (antes: função buscar() do includes/data.php) ---------- */
+window.buscarNoSite = (q, limite = 8) => {
+  const normalizar = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[–—-]/g, ' ').replace(/\s+/g, ' ').trim();
+  const termos = normalizar(q).split(' ').filter((t) => t.length >= 2);
+  if (!termos.length) return [];
+  const resultados = [];
+  window.PALEO.indice.forEach((item) => {
+    const titulo = normalizar(item.titulo);
+    const corpo = normalizar(`${item.texto} ${item.secao}`);
+    const chaves = normalizar(item.chaves);
+    let pontos = 0;
+    for (const t of termos) {
+      let achou = false;
+      if (titulo.includes(t)) { pontos += 5; achou = true; }
+      if (chaves.includes(t)) { pontos += 3; achou = true; }
+      if (corpo.includes(t)) { pontos += 1; achou = true; }
+      if (!achou) return; // todos os termos precisam aparecer
+    }
+    resultados.push({ ...item, pontos });
+  });
+  return resultados.sort((a, b) => b.pontos - a.pontos).slice(0, limite);
+};
+
+/* ---------- "Aberto agora" e dia de hoje (antes: status_agora() no PHP) ---------- */
+(() => {
+  // Usa o horário de Brasília, mesmo que o visitante esteja em outro fuso
+  const partes = new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false })
+    .formatToParts(new Date());
+  const dias = { dom: 0, seg: 1, ter: 2, qua: 3, qui: 4, sex: 5, sáb: 6, sab: 6 };
+  const nomeDia = partes.find((p) => p.type === 'weekday').value.replace('.', '').toLowerCase();
+  const hoje = dias[nomeDia];
+  const agora = `${partes.find((p) => p.type === 'hour').value.padStart(2, '0')}:${partes.find((p) => p.type === 'minute').value}`;
+  const h = window.PALEO.horarios[hoje];
+
+  let aberto = false;
+  let texto;
+  if (!h.abre) texto = 'Fechado hoje';
+  else if (agora < h.abre) texto = `Abre hoje às ${h.abre}`;
+  else if (agora >= h.fecha) texto = 'Fechado agora';
+  else { aberto = true; texto = `Aberto agora · até ${h.fecha}`; }
+
+  document.querySelectorAll('[data-status]').forEach((el) => {
+    el.classList.toggle('is-open', aberto);
+    const alvo = el.querySelector('strong') || el;
+    if (alvo === el) el.innerHTML = `<i></i>${texto}`;
+    else alvo.textContent = texto;
+  });
+
+  // destaca o dia de hoje na lista de horários
+  document.querySelectorAll('.day').forEach((li) => {
+    const nome = li.querySelector('.day__name');
+    if (nome && nome.textContent.trim() === h.dia) {
+      li.classList.add('is-today');
+      nome.insertAdjacentHTML('beforeend', ' <b>hoje</b>');
+    }
+  });
+
+  document.querySelectorAll('[data-ano]').forEach((el) => { el.textContent = new Date().getFullYear(); });
+})();
+
+/* ---------- Página de resultados (antes: search.php sem format=json) ---------- */
+(() => {
+  if (document.body.dataset.page !== 'busca') return;
+  const q = (new URLSearchParams(location.search).get('q') || '').trim().slice(0, 80);
+  const lista = document.querySelector('.search-page');
+  const titulo = document.querySelector('.page-hero h1');
+  const escapar = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+  if (!q) return;
+  document.getElementById('busca').value = q;
+  const res = window.buscarNoSite(q, 30);
+  titulo.innerHTML = `Resultados para <em>“${escapar(q)}”</em>`;
+  titulo.insertAdjacentHTML('afterend', `<p>${res.length} resultado${res.length === 1 ? '' : 's'} encontrado${res.length === 1 ? '' : 's'}.</p>`);
+  lista.innerHTML = res.length
+    ? res.map((r) => `<li><a href="${escapar(r.url)}"><span class="tag">${escapar(r.secao)}</span><strong>${escapar(r.titulo)}</strong><small>${escapar(r.texto)}</small></a></li>`).join('')
+    : '<li class="search-page__empty">Nada encontrado. Tente “dinossauro”, “mamute”, “terça” ou “kids”.</li>';
+})();

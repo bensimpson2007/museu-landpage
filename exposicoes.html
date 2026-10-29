@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Exposições · Museu Paleo</title>
+<meta name="description" content="Museu Paleo — Ossos que contam a história da Terra. Dinossauros, mamutes e os ossos da pré-história.">
+<meta name="theme-color" content="#0d0b09">
+<link rel="icon" href="assets/img/osso.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-page="exposicoes" data-scene="cave">
+
+<div class="scene-bg" aria-hidden="true">
+  <div class="scene-layer" data-layer="cave"></div>
+  <canvas class="dust"></canvas>
+  <div class="grain"></div>
+</div>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="logo" href="index.html" aria-label="Museu Paleo — página inicial">
+      <img src="assets/img/osso.svg" alt="" width="34" height="34">
+      <span>Museu <em>Paleo</em></span>
+    </a>
+
+    <form class="search" action="busca.html" method="get" role="search" autocomplete="off">
+      <label class="sr-only" for="busca">Buscar no site</label>
+      <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input id="busca" name="q" type="search" placeholder="Buscar: mamute, horários, kids…"
+             aria-controls="busca-resultados" aria-expanded="false" aria-autocomplete="list">
+      <kbd class="search__kbd" aria-hidden="true">/</kbd>
+      <div class="search__results" id="busca-resultados" role="listbox" hidden></div>
+    </form>
+
+    <span class="status" title="Horário de Brasília" data-status><i></i>Verificando horário…</span>
+
+    <button class="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="nav" id="menu" aria-label="Principal">
+          <a href="index.html" data-nav="home" >Home</a>
+          <a href="index.html#interesses" data-nav="interesses" >Interesses</a>
+          <a href="index.html#guia" data-nav="guia" >Guia de Horários</a>
+          <a href="index.html#valores" data-nav="valores" >Valores</a>
+          <a href="index.html#kids" data-nav="kids" >Kids</a>
+          <a href="exposicoes.html" data-nav="exposicoes" aria-current="page">Exposições</a>
+          <a href="sobre.html" data-nav="sobre" >Sobre Nós</a>
+      </nav>
+</header>
+
+<main id="conteudo">
+
+<section class="page-hero scene" data-scene="cave">
+  <div class="wrap">
+    <p class="eyebrow reveal">Exposições</p>
+    <h1 class="reveal">O acervo, <em>peça por peça</em></h1>
+    <p class="reveal">Do trilobita de 500 milhões de anos ao mamute que viu os primeiros humanos.
+      Clique em qualquer fóssil para vê-lo de perto.</p>
+  </div>
+</section>
+
+<section class="scene gallery-section" data-scene="amber">
+  <div class="wrap">
+    <div class="filters reveal" role="group" aria-label="Filtrar por galeria">
+      <button class="chip is-active" data-filter="todos" aria-pressed="true">Todos <small>12</small></button>
+              <button class="chip" data-filter="dinossauros" aria-pressed="false">Dinossauros <small>5</small></button>
+              <button class="chip" data-filter="gelo" aria-pressed="false">Era do Gelo <small>2</small></button>
+              <button class="chip" data-filter="mares" aria-pressed="false">Mares Antigos <small>3</small></button>
+              <button class="chip" data-filter="vestigios" aria-pressed="false">Vestígios <small>2</small></button>
+          </div>
+
+    <div class="gallery">
+              <figure class="specimen reveal" id="cranio-rex" data-cat="dinossauros" style="--i:0">
+          <button class="specimen__open" type="button"
+                  data-title="Crânio de Tiranossauro" data-era="Cretáceo · 67 milhões de anos"
+                  data-desc="Réplica em tamanho real moldada a partir de um crânio de 1,5 m. As cavidades revelam onde ficavam músculos de mordida capazes de esmagar ossos." data-img="assets/img/cranio-rex.svg"
+                  data-cat="Dinossauros">
+            <span class="specimen__art"><img src="assets/img/cranio-rex.svg" alt="Crânio de Tiranossauro" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Dinossauros</span>
+              <strong>Crânio de Tiranossauro</strong>
+              <small>Cretáceo · 67 milhões de anos</small>
+            </figcaption>
+          </button>
+        </figure>
+              <figure class="specimen reveal" id="femur" data-cat="dinossauros" style="--i:1">
+          <button class="specimen__open" type="button"
+                  data-title="Fêmur de Saurópode" data-era="Jurássico · 150 milhões de anos"
+                  data-desc="Peça original de 1,8 m, a mais pesada do acervo. Foi preciso um guindaste para trazê-la até a galeria principal." data-img="assets/img/osso.svg"
+                  data-cat="Dinossauros">
+            <span class="specimen__art"><img src="assets/img/osso.svg" alt="Fêmur de Saurópode" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Dinossauros</span>
+              <strong>Fêmur de Saurópode</strong>
+              <small>Jurássico · 150 milhões de anos</small>
+            </figcaption>
+          </button>
+        </figure>
+              <figure class="specimen reveal" id="garra" data-cat="dinossauros" style="--i:2">
+          <button class="specimen__open" type="button"
+                  data-title="Garra de Raptor" data-era="Cretáceo · 75 milhões de anos"
+                  data-desc="A garra em forma de foice ficava no segundo dedo do pé e era mantida erguida para não perder o fio." data-img="assets/img/garra.svg"
+                  data-cat="Dinossauros">
+            <span class="specimen__art"><img src="assets/img/garra.svg" alt="Garra de Raptor" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Dinossauros</span>
+              <strong>Garra de Raptor</strong>
+              <small>Cretáceo · 75 milhões de anos</small>
+            </figcaption>
+          </button>
+        </figure>
+              <figure class="specimen reveal" id="dente" data-cat="dinossauros" style="--i:3">
+          <button class="specimen__open" type="button"
+                  data-title="Dente serrilhado" data-era="Cretáceo · 68 milhões de anos"
+                  data-desc="Repare nas serrilhas da borda: funcionavam como uma faca de pão para rasgar carne." data-img="assets/img/dente.svg"
+                  data-cat="Dinossauros">
+            <span class="specimen__art"><img src="assets/img/dente.svg" alt="Dente serrilhado" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Dinossauros</span>
+              <strong>Dente serrilhado</strong>
+              <small>Cretáceo · 68 milhões de anos</small>
+            </figcaption>
+          </button>
+        </figure>
+              <figure class="specimen reveal" id="vertebras" data-cat="dinossauros" style="--i:0">
+          <button class="specimen__open" type="button"
+                  data-title="Coluna vertebral" data-era="Jurássico · 155 milhões de anos"
+                  data-desc="Sequência de vértebras caudais encontrada articulada — rara chance de ver a cauda como ela era em vida." data-img="assets/img/vertebras.svg"
+                  data-cat="Dinossauros">
+            <span class="specimen__art"><img src="assets/img/vertebras.svg" alt="Coluna vertebral" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Dinossauros</span>
+              <strong>Coluna vertebral</strong>
+              <small>Jurássico · 155 milhões de anos</small>
+            </figcaption>
+          </button>
+        </figure>
+              <figure class="specimen reveal" id="mamute" data-cat="gelo" style="--i:1">
+          <button class="specimen__open" type="button"
+                  data-title="Mamute-lanoso" data-era="Pleistoceno · 20 mil anos"
+                  data-desc="Esqueleto montado com 3,4 m de altura. As presas curvas eram usadas para afastar a neve e encontrar pasto." data-img="assets/img/mamute.svg"
+                  data-cat="Era do Gelo">
+            <span class="specimen__art"><img src="assets/img/mamute.svg" alt="Mamute-lanoso" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Era do Gelo</span>
+              <strong>Mamute-lanoso</strong>
+              <small>Pleistoceno · 20 mil anos</small>
+            </figcaption>
+          </button>
+        </figure>
+              <figure class="specimen reveal" id="presa" data-cat="gelo" style="--i:2">
+          <button class="specimen__open" type="button"
+                  data-title="Presa de mamute" data-era="Pleistoceno · 35 mil anos"
+                  data-desc="Os anéis internos da presa funcionam como os de uma árvore e contam a história de cada inverno do animal." data-img="assets/img/presa.svg"
+                  data-cat="Era do Gelo">
+            <span class="specimen__art"><img src="assets/img/presa.svg" alt="Presa de mamute" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Era do Gelo</span>
+              <strong>Presa de mamute</strong>
+              <small>Pleistoceno · 35 mil anos</small>
+            </figcaption>
+          </button>
+        </figure>
+              <figure class="specimen reveal" id="amonite" data-cat="mares" style="--i:3">
+          <button class="specimen__open" type="button"
+                  data-title="Amonite" data-era="Jurássico · 180 milhões de anos"
+                  data-desc="Concha espiral de um molusco marinho. As câmaras internas controlavam a flutuação, como um submarino." data-img="assets/img/amonite.svg"
+                  data-cat="Mares Antigos">
+            <span class="specimen__art"><img src="assets/img/amonite.svg" alt="Amonite" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Mares Antigos</span>
+              <strong>Amonite</strong>
+              <small>Jurássico · 180 milhões de anos</small>
+            </figcaption>
+          </button>
+        </figure>
+              <figure class="specimen reveal" id="trilobita" data-cat="mares" style="--i:0">
+          <button class="specimen__open" type="button"
+                  data-title="Trilobita" data-era="Cambriano · 500 milhões de anos"
+                  data-desc="Um dos primeiros animais com olhos complexos. Viveu nos oceanos por quase 300 milhões de anos." data-img="assets/img/trilobita.svg"
+                  data-cat="Mares Antigos">
+            <span class="specimen__art"><img src="assets/img/trilobita.svg" alt="Trilobita" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Mares Antigos</span>
+              <strong>Trilobita</strong>
+              <small>Cambriano · 500 milhões de anos</small>
+            </figcaption>
+          </button>
+        </figure>
+              <figure class="specimen reveal" id="peixe" data-cat="mares" style="--i:1">
+          <button class="specimen__open" type="button"
+                  data-title="Peixe fossilizado" data-era="Cretáceo · 110 milhões de anos"
+                  data-desc="Vindo da Chapada do Araripe, conserva até as finas espinhas das nadadeiras." data-img="assets/img/peixe.svg"
+                  data-cat="Mares Antigos">
+            <span class="specimen__art"><img src="assets/img/peixe.svg" alt="Peixe fossilizado" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Mares Antigos</span>
+              <strong>Peixe fossilizado</strong>
+              <small>Cretáceo · 110 milhões de anos</small>
+            </figcaption>
+          </button>
+        </figure>
+              <figure class="specimen reveal" id="pegada" data-cat="vestigios" style="--i:2">
+          <button class="specimen__open" type="button"
+                  data-title="Pegada tridáctila" data-era="Jurássico · 140 milhões de anos"
+                  data-desc="Três dedos e 40 cm de comprimento: um terópode passou por aqui caminhando sobre lama mole." data-img="assets/img/pegada.svg"
+                  data-cat="Vestígios">
+            <span class="specimen__art"><img src="assets/img/pegada.svg" alt="Pegada tridáctila" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Vestígios</span>
+              <strong>Pegada tridáctila</strong>
+              <small>Jurássico · 140 milhões de anos</small>
+            </figcaption>
+          </button>
+        </figure>
+              <figure class="specimen reveal" id="samambaia" data-cat="vestigios" style="--i:3">
+          <button class="specimen__open" type="button"
+                  data-title="Samambaia fóssil" data-era="Carbonífero · 300 milhões de anos"
+                  data-desc="Folhas como esta formavam as florestas que, comprimidas, viraram o carvão mineral de hoje." data-img="assets/img/samambaia.svg"
+                  data-cat="Vestígios">
+            <span class="specimen__art"><img src="assets/img/samambaia.svg" alt="Samambaia fóssil" loading="lazy"></span>
+            <figcaption>
+              <span class="tag">Vestígios</span>
+              <strong>Samambaia fóssil</strong>
+              <small>Carbonífero · 300 milhões de anos</small>
+            </figcaption>
+          </button>
+        </figure>
+          </div>
+  </div>
+</section>
+
+<dialog class="lightbox" aria-labelledby="lb-title">
+  <button class="lightbox__close" type="button" aria-label="Fechar">×</button>
+  <button class="lightbox__nav lightbox__prev" type="button" aria-label="Peça anterior">‹</button>
+  <div class="lightbox__body">
+    <div class="lightbox__art"><img src="" alt=""></div>
+    <div class="lightbox__info">
+      <span class="tag"></span>
+      <h2 id="lb-title"></h2>
+      <p class="lightbox__era"></p>
+      <p class="lightbox__desc"></p>
+    </div>
+  </div>
+  <button class="lightbox__nav lightbox__next" type="button" aria-label="Próxima peça">›</button>
+</dialog>
+
+</main>
+
+<footer class="footer" data-scene="cave">
+  <div class="footer__grid">
+    <div>
+      <a class="logo" href="index.html">
+        <img src="assets/img/osso.svg" alt="" width="34" height="34">
+        <span>Museu <em>Paleo</em></span>
+      </a>
+      <p class="footer__slogan">Ossos que contam a história da Terra.</p>
+    </div>
+    <div>
+      <h4>Visite</h4>
+      <p>Rua das Escavações, 65 — Centro</p>
+      <p>Terça a domingo · Segunda fechado</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+              <a href="index.html">Home</a>
+              <a href="index.html#interesses">Interesses</a>
+              <a href="index.html#guia">Guia de Horários</a>
+              <a href="index.html#valores">Valores</a>
+              <a href="index.html#kids">Kids</a>
+              <a href="exposicoes.html">Exposições</a>
+              <a href="sobre.html">Sobre Nós</a>
+          </div>
+    <div>
+      <h4>Contato</h4>
+      <p>contato@museupaleo.org</p>
+      <p>(11) 4000-0065</p>
+    </div>
+  </div>
+  <p class="footer__copy">© <span data-ano>2026</span> Museu Paleo · Projeto fictício de estudo</p>
+</footer>
+
+
+<script src="assets/js/dados.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>

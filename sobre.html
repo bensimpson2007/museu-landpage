@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sobre Nós · Museu Paleo</title>
+<meta name="description" content="Museu Paleo — Ossos que contam a história da Terra. Dinossauros, mamutes e os ossos da pré-história.">
+<meta name="theme-color" content="#0d0b09">
+<link rel="icon" href="assets/img/osso.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,500;1,600&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="assets/css/style.css">
+<script>document.documentElement.classList.add('js')</script>
+</head>
+<body data-page="sobre" data-scene="cave">
+
+<div class="scene-bg" aria-hidden="true">
+  <div class="scene-layer" data-layer="cave"></div>
+  <canvas class="dust"></canvas>
+  <div class="grain"></div>
+</div>
+
+<a class="skip" href="#conteudo">Pular para o conteúdo</a>
+
+<header class="topbar">
+  <div class="topbar__inner">
+    <a class="logo" href="index.html" aria-label="Museu Paleo — página inicial">
+      <img src="assets/img/osso.svg" alt="" width="34" height="34">
+      <span>Museu <em>Paleo</em></span>
+    </a>
+
+    <form class="search" action="busca.html" method="get" role="search" autocomplete="off">
+      <label class="sr-only" for="busca">Buscar no site</label>
+      <svg class="search__icon" viewBox="0 0 24 24" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m20 20-4-4"/></svg>
+      <input id="busca" name="q" type="search" placeholder="Buscar: mamute, horários, kids…"
+             aria-controls="busca-resultados" aria-expanded="false" aria-autocomplete="list">
+      <kbd class="search__kbd" aria-hidden="true">/</kbd>
+      <div class="search__results" id="busca-resultados" role="listbox" hidden></div>
+    </form>
+
+    <span class="status" title="Horário de Brasília" data-status><i></i>Verificando horário…</span>
+
+    <button class="burger" aria-label="Abrir menu" aria-expanded="false" aria-controls="menu">
+      <span></span><span></span>
+    </button>
+  </div>
+
+  <nav class="nav" id="menu" aria-label="Principal">
+          <a href="index.html" data-nav="home" >Home</a>
+          <a href="index.html#interesses" data-nav="interesses" >Interesses</a>
+          <a href="index.html#guia" data-nav="guia" >Guia de Horários</a>
+          <a href="index.html#valores" data-nav="valores" >Valores</a>
+          <a href="index.html#kids" data-nav="kids" >Kids</a>
+          <a href="exposicoes.html" data-nav="exposicoes" >Exposições</a>
+          <a href="sobre.html" data-nav="sobre" aria-current="page">Sobre Nós</a>
+      </nav>
+</header>
+
+<main id="conteudo">
+
+<section class="page-hero scene about-hero" data-scene="cave">
+  <div class="wrap about-hero__grid">
+    <div>
+      <p class="eyebrow reveal">Sobre nós</p>
+      <h1 class="reveal">Tudo começou com <em>uma caixa de ossos</em></h1>
+      <p class="reveal">Em 1958, a paleontóloga Helena Ravel voltou de uma expedição ao interior com uma caixa
+        de fragmentos que ninguém sabia identificar. Guardou tudo no porão de casa, catalogou peça por peça
+        e começou a mostrar aos vizinhos. Oito anos depois, aquele porão virou o Museu Paleo.</p>
+      <p class="reveal">Hoje somos uma equipe de 40 pessoas — paleontólogos, preparadores, educadores e
+        contadores de histórias — cuidando de um acervo de mais de 12 mil fósseis.</p>
+    </div>
+    <figure class="about-hero__art reveal" data-parallax="0.12">
+      <img src="assets/img/cranio-rex.svg" alt="Ilustração de crânio de tiranossauro">
+    </figure>
+  </div>
+</section>
+
+<section class="scene" id="historia" data-scene="forest">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <p class="eyebrow">Linha do tempo</p>
+      <h2>Camadas da <em>nossa história</em></h2>
+      <p>Como nas rochas, cada época deixou sua marca no museu.</p>
+    </header>
+
+    <ol class="timeline">
+              <li class="timeline__item reveal" style="--i:0">
+          <span class="timeline__year">1958</span>
+          <div class="timeline__card">
+            <h3>Uma caixa de ossos</h3>
+            <p>A paleontóloga Helena Ravel guarda no porão de casa as primeiras peças encontradas no interior do estado.</p>
+          </div>
+        </li>
+              <li class="timeline__item reveal" style="--i:1">
+          <span class="timeline__year">1966</span>
+          <div class="timeline__card">
+            <h3>Portas abertas</h3>
+            <p>Com doações da comunidade, o acervo ganha um casarão no centro e vira o Museu Paleo.</p>
+          </div>
+        </li>
+              <li class="timeline__item reveal" style="--i:0">
+          <span class="timeline__year">1979</span>
+          <div class="timeline__card">
+            <h3>O primeiro gigante</h3>
+            <p>Chega o fêmur de saurópode de 1,8 m — até hoje a peça mais pesada da casa.</p>
+          </div>
+        </li>
+              <li class="timeline__item reveal" style="--i:1">
+          <span class="timeline__year">1994</span>
+          <div class="timeline__card">
+            <h3>A ala da Era do Gelo</h3>
+            <p>Um mamute-lanoso é montado osso a osso e passa a receber os visitantes no saguão.</p>
+          </div>
+        </li>
+              <li class="timeline__item reveal" style="--i:0">
+          <span class="timeline__year">2008</span>
+          <div class="timeline__card">
+            <h3>Laboratório de vidro</h3>
+            <p>O trabalho de preparação de fósseis passa a acontecer à vista do público.</p>
+          </div>
+        </li>
+              <li class="timeline__item reveal" style="--i:1">
+          <span class="timeline__year">2017</span>
+          <div class="timeline__card">
+            <h3>Nasce o Paleo Kids</h3>
+            <p>Caixa de escavação, oficinas e a Hora da História trazem as crianças para o centro do museu.</p>
+          </div>
+        </li>
+              <li class="timeline__item reveal" style="--i:0">
+          <span class="timeline__year">2025</span>
+          <div class="timeline__card">
+            <h3>Nova iluminação</h3>
+            <p>As galerias ganham luz cênica pensada para revelar cada textura dos ossos.</p>
+          </div>
+        </li>
+          </ol>
+  </div>
+</section>
+
+<section class="scene" data-scene="ember">
+  <div class="wrap">
+    <header class="section-head reveal">
+      <p class="eyebrow">O que nos move</p>
+      <h2>Pesquisar, <em>preservar</em>, contar</h2>
+    </header>
+    <div class="pillars">
+      <article class="pillar reveal" style="--i:0">
+        <span class="pillar__n">01</span>
+        <h3>Pesquisa</h3>
+        <p>Participamos de escavações todos os anos e publicamos o que encontramos, com acesso aberto.</p>
+      </article>
+      <article class="pillar reveal" style="--i:1">
+        <span class="pillar__n">02</span>
+        <h3>Preservação</h3>
+        <p>Cada osso é limpo, consolidado e guardado com controle de umidade para durar mais milhões de anos.</p>
+      </article>
+      <article class="pillar reveal" style="--i:2">
+        <span class="pillar__n">03</span>
+        <h3>Educação</h3>
+        <p>Mais de 30 mil estudantes de escolas públicas nos visitam por ano, sem pagar nada.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="scene cta-band" data-scene="kids">
+  <div class="wrap reveal">
+    <h2>Venha conhecer de perto</h2>
+    <p>Terça a domingo. Às terças, a entrada é gratuita.</p>
+    <div class="hero__cta">
+      <a class="btn btn--solid" href="index.html#guia">Ver horários</a>
+      <a class="btn btn--ghost" href="index.html#valores">Ver valores</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="footer" data-scene="cave">
+  <div class="footer__grid">
+    <div>
+      <a class="logo" href="index.html">
+        <img src="assets/img/osso.svg" alt="" width="34" height="34">
+        <span>Museu <em>Paleo</em></span>
+      </a>
+      <p class="footer__slogan">Ossos que contam a história da Terra.</p>
+    </div>
+    <div>
+      <h4>Visite</h4>
+      <p>Rua das Escavações, 65 — Centro</p>
+      <p>Terça a domingo · Segunda fechado</p>
+    </div>
+    <div>
+      <h4>Explore</h4>
+              <a href="index.html">Home</a>
+              <a href="index.html#interesses">Interesses</a>
+              <a href="index.html#guia">Guia de Horários</a>
+              <a href="index.html#valores">Valores</a>
+              <a href="index.html#kids">Kids</a>
+              <a href="exposicoes.html">Exposições</a>
+              <a href="sobre.html">Sobre Nós</a>
+          </div>
+    <div>
+      <h4>Contato</h4>
+      <p>contato@museupaleo.org</p>
+      <p>(11) 4000-0065</p>
+    </div>
+  </div>
+  <p class="footer__copy">© <span data-ano>2026</span> Museu Paleo · Projeto fictício de estudo</p>
+</footer>
+
+
+<script src="assets/js/dados.js" defer></script>
+<script src="assets/js/main.js" defer></script>
+</body>
+</html>
