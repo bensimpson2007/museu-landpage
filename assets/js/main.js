@@ -568,3 +568,21 @@ window.buscarNoSite = (q, limite = 8) => {
     ? res.map((r) => `<li><a href="${escapar(r.url)}"><span class="tag">${escapar(r.secao)}</span><strong>${escapar(r.titulo)}</strong><small>${escapar(r.texto)}</small></a></li>`).join('')
     : '<li class="search-page__empty">Nada encontrado. Tente “dinossauro”, “mamute”, “terça” ou “kids”.</li>';
 })();
+/* ---------- Botão "Atualizar GitHub" (só no seu computador) ----------
+   O site é HTML puro e o navegador não pode rodar o git sozinho.
+   O botão conversa com o sync.php, que só responde quando o site está aberto
+   pelo servidor PHP local (php -S localhost:8080). Fora disso, ele fica escondido. */
+(() => {
+  const botao = document.querySelector('.dev-sync');
+  if (!botao || !['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)) return;
+  const badge = botao.querySelector('.dev-sync__badge');
+  fetch('sync.php', { method: 'POST', headers: { 'X-Museu-Sync': '1' }, body: new URLSearchParams({ acao: 'status' }) })
+    .then((r) => r.json())
+    .then(({ ok, arquivos }) => {
+      if (!ok) return;
+      botao.hidden = false;
+      badge.hidden = !arquivos.length;
+      badge.textContent = arquivos.length;
+    })
+    .catch(() => {}); // sem servidor PHP (ex.: abrindo o arquivo direto): o botão continua escondido
+})();

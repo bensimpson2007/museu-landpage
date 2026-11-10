@@ -692,6 +692,7 @@ h1 em, h2 em { color: var(--accent); }
 }
 
 /* ---------- Botão do painel do GitHub (só aparece em localhost) ---------- */
+.dev-sync[hidden] { display: none; }
 .dev-sync {
   position: fixed; right: 18px; bottom: 18px; z-index: 60;
   display: grid; place-items: center; width: 44px; height: 44px; border-radius: 50%;
