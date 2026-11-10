@@ -37,7 +37,7 @@
   });
 
   function destacar(alvo) {
-    const el = alvo.matches('section') ? ($('.section-head', alvo) || $('.hero__text', alvo) || alvo) : ($('.specimen__open', alvo) || alvo);
+    const el = alvo.matches('section') ? ($('.section-head', alvo) || $('.hero__text', alvo) || $('.chip.is-active', alvo) || alvo) : ($('.specimen__open', alvo) || alvo);
     el.classList.remove('is-found');
     void el.offsetWidth;
     el.classList.add('is-found');
@@ -311,7 +311,20 @@
         setTimeout(() => { if (p.classList.contains('is-hiding')) p.classList.add('is-hidden'); }, 400);
       }
     });
+    // guarda a aba no endereço (ex.: exposicoes.html?galeria=gelo), para dar para compartilhar
+    const url = new URL(location.href);
+    if (f === 'todos') url.searchParams.delete('galeria');
+    else url.searchParams.set('galeria', f);
+    history.replaceState(null, '', url);
   }));
+
+  // Abre direto na aba pedida pelo link (cards da Home: exposicoes.html?galeria=gelo)
+  const abaPedida = new URLSearchParams(location.search).get('galeria');
+  const chipPedido = abaPedida && $(`.chip[data-filter="${CSS.escape(abaPedida)}"]`);
+  if (chipPedido) {
+    $$('.chip').forEach((c) => { c.classList.toggle('is-active', c === chipPedido); c.setAttribute('aria-pressed', String(c === chipPedido)); });
+    pecas.forEach((p) => p.classList.toggle('is-hidden', p.dataset.cat !== abaPedida)); // sem animação na abertura
+  }
 
   /* ---------- Galeria: lightbox ---------- */
   const lb = $('.lightbox');

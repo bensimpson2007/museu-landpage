@@ -58,14 +58,14 @@ window.PALEO = {
         },
         {
             "titulo": "Guia de Horários",
-            "url": "index.html#guia",
+            "url": "horarios.html",
             "secao": "Guia",
             "texto": "Dias e horários em que o museu está aberto. Segunda-feira fechado.",
             "chaves": "horario horarios dias aberto fechado funcionamento guia visita agenda trabalho"
         },
         {
             "titulo": "Valores e ingressos",
-            "url": "index.html#valores",
+            "url": "valores.html",
             "secao": "Valores",
             "texto": "Inteira, meia-entrada, família e kids. Terça gratuita.",
             "chaves": "preco precos valor valores ingresso ingressos comprar meia inteira gratis gratuito"
@@ -100,98 +100,98 @@ window.PALEO = {
         },
         {
             "titulo": "Segunda-feira",
-            "url": "index.html#guia",
+            "url": "horarios.html",
             "secao": "Guia",
             "texto": "fechado. Fechado para cuidado do acervo.",
             "chaves": "horario dia"
         },
         {
             "titulo": "Terça-feira",
-            "url": "index.html#guia",
+            "url": "horarios.html",
             "secao": "Guia",
             "texto": "09:00 às 18:00. Entrada gratuita o dia todo.",
             "chaves": "horario dia"
         },
         {
             "titulo": "Quarta-feira",
-            "url": "index.html#guia",
+            "url": "horarios.html",
             "secao": "Guia",
             "texto": "09:00 às 18:00.",
             "chaves": "horario dia"
         },
         {
             "titulo": "Quinta-feira",
-            "url": "index.html#guia",
+            "url": "horarios.html",
             "secao": "Guia",
             "texto": "09:00 às 18:00.",
             "chaves": "horario dia"
         },
         {
             "titulo": "Sexta-feira",
-            "url": "index.html#guia",
+            "url": "horarios.html",
             "secao": "Guia",
             "texto": "09:00 às 18:00.",
             "chaves": "horario dia"
         },
         {
             "titulo": "Sábado",
-            "url": "index.html#guia",
+            "url": "horarios.html",
             "secao": "Guia",
             "texto": "09:00 às 20:00. Noite no Museu: visita com lanternas às 18h.",
             "chaves": "horario dia"
         },
         {
             "titulo": "Domingo",
-            "url": "index.html#guia",
+            "url": "horarios.html",
             "secao": "Guia",
             "texto": "10:00 às 17:00. Hora da História Kids às 11h e 15h.",
             "chaves": "horario dia"
         },
         {
             "titulo": "Ingresso Inteira",
-            "url": "index.html#valores",
+            "url": "valores.html",
             "secao": "Valores",
             "texto": "R$ 40 — Acesso a todas as galerias e ao laboratório aberto.",
             "chaves": "preco ingresso valor"
         },
         {
             "titulo": "Ingresso Meia-entrada",
-            "url": "index.html#valores",
+            "url": "valores.html",
             "secao": "Valores",
             "texto": "R$ 20 — Estudantes, professores, idosos e PcD, com documento.",
             "chaves": "preco ingresso valor"
         },
         {
             "titulo": "Ingresso Família",
-            "url": "index.html#valores",
+            "url": "valores.html",
             "secao": "Valores",
             "texto": "R$ 95 — 2 adultos + até 2 crianças, com uma atividade Kids inclusa.",
             "chaves": "preco ingresso valor"
         },
         {
             "titulo": "Ingresso Kids (3–12)",
-            "url": "index.html#valores",
+            "url": "valores.html",
             "secao": "Valores",
             "texto": "R$ 15 — Crianças até 2 anos não pagam.",
             "chaves": "preco ingresso valor"
         },
         {
             "titulo": "Condição especial",
-            "url": "index.html#valores",
+            "url": "valores.html",
             "secao": "Valores",
             "texto": "Terça-feira: entrada gratuita para todos.",
             "chaves": "preco gratis desconto"
         },
         {
             "titulo": "Condição especial",
-            "url": "index.html#valores",
+            "url": "valores.html",
             "secao": "Valores",
             "texto": "Escolas públicas: visita gratuita com agendamento.",
             "chaves": "preco gratis desconto"
         },
         {
             "titulo": "Condição especial",
-            "url": "index.html#valores",
+            "url": "valores.html",
             "secao": "Valores",
             "texto": "Escavação Kids: + R$ 10 por criança (sessões de 40 min).",
             "chaves": "preco gratis desconto"

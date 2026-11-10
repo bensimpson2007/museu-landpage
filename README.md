@@ -5,7 +5,9 @@ Ela existe para comparar e aprender o que o PHP fazia na versão original. Leia 
 
 ## Páginas
 
-- `index.html`: Home (o museu, horários, valores, Kids e interesses)
+- `index.html`: Home (o museu, Kids e interesses)
+- `valores.html`: valores dos ingressos e condições especiais
+- `horarios.html`: horário de funcionamento, dicas e status "Aberto agora"
 - `exposicoes.html`: galeria do acervo com filtros
 - `sobre.html`: história do museu
 - `busca.html`: resultados do buscador
