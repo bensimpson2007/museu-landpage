@@ -1,0 +1,86 @@
+[
+    {
+        "id": "cranio-rex",
+        "titulo": "Crânio de Tiranossauro",
+        "era": "Cretáceo · 67 milhões de anos",
+        "descricao": "Réplica em tamanho real moldada a partir de um crânio de 1,5 m. As cavidades revelam onde ficavam músculos de mordida capazes de esmagar ossos.",
+        "imagem": "cranio-rex.svg"
+    },
+    {
+        "id": "femur",
+        "titulo": "Fêmur de Saurópode",
+        "era": "Jurássico · 150 milhões de anos",
+        "descricao": "Peça original de 1,8 m, a mais pesada do acervo. Foi preciso um guindaste para trazê-la até a galeria principal.",
+        "imagem": "osso.svg"
+    },
+    {
+        "id": "garra",
+        "titulo": "Garra de Raptor",
+        "era": "Cretáceo · 75 milhões de anos",
+        "descricao": "A garra em forma de foice ficava no segundo dedo do pé e era mantida erguida para não perder o fio.",
+        "imagem": "garra.svg"
+    },
+    {
+        "id": "dente",
+        "titulo": "Dente serrilhado",
+        "era": "Cretáceo · 68 milhões de anos",
+        "descricao": "Repare nas serrilhas da borda: funcionavam como uma faca de pão para rasgar carne.",
+        "imagem": "dente.svg"
+    },
+    {
+        "id": "vertebras",
+        "titulo": "Coluna vertebral",
+        "era": "Jurássico · 155 milhões de anos",
+        "descricao": "Sequência de vértebras caudais encontrada articulada — rara chance de ver a cauda como ela era em vida.",
+        "imagem": "vertebras.svg"
+    },
+    {
+        "id": "cranio-triceratops",
+        "titulo": "Crânio de Tricerátops",
+        "era": "Cretáceo · 66 milhões de anos",
+        "descricao": "Três chifres e um grande escudo ósseo protegiam o pescoço e ajudavam a impressionar rivais.",
+        "imagem": null
+    },
+    {
+        "id": "placa-estegossauro",
+        "titulo": "Placa dorsal de Estegossauro",
+        "era": "Jurássico · 150 milhões de anos",
+        "descricao": "As placas ósseas das costas provavelmente serviam para exibição e para controlar a temperatura do corpo.",
+        "imagem": null
+    },
+    {
+        "id": "ovos-titanossauro",
+        "titulo": "Ovos de Titanossauro",
+        "era": "Cretáceo · 80 milhões de anos",
+        "descricao": "Ovos quase do tamanho de uma bola de handebol, postos em ninhos coletivos escavados na areia.",
+        "imagem": null
+    },
+    {
+        "id": "espinho-espinossauro",
+        "titulo": "Espinho dorsal de Espinossauro",
+        "era": "Cretáceo · 95 milhões de anos",
+        "descricao": "Fragmento da \"vela\" de quase 2 metros que cobria as costas desse grande caçador de peixes.",
+        "imagem": null
+    },
+    {
+        "id": "clava-anquilossauro",
+        "titulo": "Clava de Anquilossauro",
+        "era": "Cretáceo · 68 milhões de anos",
+        "descricao": "Bola de osso maciço na ponta da cauda, usada como uma marreta contra predadores.",
+        "imagem": null
+    },
+    {
+        "id": "cranio-velociraptor",
+        "titulo": "Crânio de Velociraptor",
+        "era": "Cretáceo · 75 milhões de anos",
+        "descricao": "Com só 25 cm, mostra o focinho estreito e os dentes curvos de um caçador ágil do tamanho de um peru.",
+        "imagem": null
+    },
+    {
+        "id": "impressao-pena",
+        "titulo": "Impressão de pena",
+        "era": "Jurássico · 150 milhões de anos",
+        "descricao": "Marca de pena preservada em calcário fino: prova de que muitos dinossauros eram emplumados.",
+        "imagem": null
+    }
+]

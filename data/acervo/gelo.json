@@ -1,0 +1,86 @@
+[
+    {
+        "id": "mamute",
+        "titulo": "Mamute-lanoso",
+        "era": "Pleistoceno · 20 mil anos",
+        "descricao": "Esqueleto montado com 3,4 m de altura. As presas curvas eram usadas para afastar a neve e encontrar pasto.",
+        "imagem": "mamute.svg"
+    },
+    {
+        "id": "presa",
+        "titulo": "Presa de mamute",
+        "era": "Pleistoceno · 35 mil anos",
+        "descricao": "Os anéis internos da presa funcionam como os de uma árvore e contam a história de cada inverno do animal.",
+        "imagem": "presa.svg"
+    },
+    {
+        "id": "cranio-smilodon",
+        "titulo": "Crânio de tigre-dentes-de-sabre",
+        "era": "Pleistoceno · 12 mil anos",
+        "descricao": "Os caninos de quase 28 cm eram usados para golpes precisos no pescoço da presa.",
+        "imagem": null
+    },
+    {
+        "id": "garra-preguica",
+        "titulo": "Garra de preguiça-gigante",
+        "era": "Pleistoceno · 15 mil anos",
+        "descricao": "Do tamanho de um elefante, a preguiça-gigante viveu no Brasil e usava as garras para puxar galhos.",
+        "imagem": null
+    },
+    {
+        "id": "carapaca-gliptodonte",
+        "titulo": "Carapaça de Gliptodonte",
+        "era": "Pleistoceno · 12 mil anos",
+        "descricao": "Parente gigante do tatu, com um casco de mais de 1,5 m formado por centenas de placas ósseas.",
+        "imagem": null
+    },
+    {
+        "id": "molar-mamute",
+        "titulo": "Molar de mamute",
+        "era": "Pleistoceno · 30 mil anos",
+        "descricao": "Placas de esmalte em fileira funcionavam como um ralador para triturar capim duro e congelado.",
+        "imagem": null
+    },
+    {
+        "id": "chifre-rinoceronte",
+        "titulo": "Chifre de rinoceronte-lanoso",
+        "era": "Pleistoceno · 30 mil anos",
+        "descricao": "Achatado e muito longo, era usado para afastar a neve e alcançar a vegetação por baixo.",
+        "imagem": null
+    },
+    {
+        "id": "cranio-urso-cavernas",
+        "titulo": "Crânio de urso-das-cavernas",
+        "era": "Pleistoceno · 40 mil anos",
+        "descricao": "Encontrado no fundo de cavernas onde esses ursos enormes passavam o inverno hibernando.",
+        "imagem": null
+    },
+    {
+        "id": "galhada-megaloceros",
+        "titulo": "Galhada de alce-irlandês",
+        "era": "Pleistoceno · 12 mil anos",
+        "descricao": "Com até 3,6 m de ponta a ponta, é a maior galhada de cervídeo já conhecida.",
+        "imagem": null
+    },
+    {
+        "id": "mandibula-toxodonte",
+        "titulo": "Mandíbula de Toxodonte",
+        "era": "Pleistoceno · 15 mil anos",
+        "descricao": "Mamífero sul-americano do tamanho de um rinoceronte, com dentes que cresciam a vida toda.",
+        "imagem": null
+    },
+    {
+        "id": "cranio-lobo-terrivel",
+        "titulo": "Crânio de lobo-terrível",
+        "era": "Pleistoceno · 13 mil anos",
+        "descricao": "Maior e mais robusto que o lobo atual, tinha uma mordida forte o bastante para quebrar ossos.",
+        "imagem": null
+    },
+    {
+        "id": "lamina-pedra",
+        "titulo": "Lâmina de pedra lascada",
+        "era": "Paleolítico · 15 mil anos",
+        "descricao": "Ferramenta de caçadores humanos que conviveram com mamutes e preguiças-gigantes.",
+        "imagem": null
+    }
+]

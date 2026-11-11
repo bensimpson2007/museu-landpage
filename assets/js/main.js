@@ -53,7 +53,7 @@
   }
   if (location.hash) {
     const alvo = document.getElementById(decodeURIComponent(location.hash.slice(1)));
-    if (alvo) setTimeout(() => destacar(alvo), 700);
+    if (alvo && !alvo.matches('#acervo')) setTimeout(() => destacar(alvo), 700); // #acervo: quem destaca é a galeria, depois de montada
   }
 
   /* ---------- Revelar ao rolar ---------- */
@@ -179,11 +179,12 @@
     setTimeout(() => { if (!caixa.classList.contains('is-open')) caixa.hidden = true; }, 300);
   }
 
-  function buscar(q) {
+  async function buscar(q) {
     ultimaBusca = q;
     try {
-      // Versão sem PHP: a busca roda aqui no navegador, sobre o índice de assets/js/dados.js
-      const dados = { resultados: window.buscarNoSite(q, 8) };
+      // a busca roda aqui no navegador, sobre o índice montado a partir dos JSON da pasta data/
+      const dados = { resultados: await window.buscarNoSite(q, 8) };
+      if (q !== ultimaBusca) return; // o usuário já digitou outra coisa enquanto carregava
       const termos = semAcento(q).split(/[\s-]+/).filter((t) => t.length >= 2);
       if (!dados.resultados.length) {
         caixa.innerHTML = `<p class="search__empty">Nenhum fóssil encontrado para “${escapar(q)}”. Tente “mamute”, “terça” ou “kids”.</p>`;
@@ -304,8 +305,62 @@
     });
   }
 
+  /* ---------- Galeria: monta os cards a partir de data/acervo/*.json ----------
+     Antes, as peças estavam escritas uma a uma no exposicoes.html.
+     Agora o HTML só tem uma <div class="gallery"> vazia, e o JS preenche com os dados. */
+  const galeria = $('.gallery');
+  let pecas = [];
+  const esc = (s) => String(s ?? '').replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
+
+  const cardPeca = (p, g, i) => `
+    <figure class="specimen reveal" id="${esc(p.id)}" data-cat="${esc(g.slug)}" style="--i:${i % 4}">
+      <button class="specimen__open" type="button" data-title="${esc(p.titulo)}" data-era="${esc(p.era)}"
+              data-desc="${esc(p.descricao)}" data-img="${p.imagem ? `assets/img/${esc(p.imagem)}` : ''}" data-cat="${esc(g.nome)}">
+        <span class="specimen__art${p.imagem ? '' : ' is-empty'}">${p.imagem ? `<img src="assets/img/${esc(p.imagem)}" alt="${esc(p.titulo)}" loading="lazy">` : ''}</span>
+        <figcaption>
+          <span class="tag">${esc(g.nome)}</span>
+          <strong>${esc(p.titulo)}</strong>
+          <small>${esc(p.era)}</small>
+        </figcaption>
+      </button>
+    </figure>`;
+
+  async function montarGaleria() {
+    let galerias;
+    try {
+      galerias = await window.Dados.acervo();
+    } catch {
+      galeria.innerHTML = '<p class="gallery__erro">Não foi possível carregar o acervo. Abra o site pelo servidor (ex.: http://localhost:8080), e não com dois cliques no arquivo.</p>';
+      return;
+    }
+
+    galeria.innerHTML = galerias.flatMap((g) => g.pecas.map((p, i) => cardPeca(p, g, i))).join('');
+    pecas = $$('.specimen', galeria);
+    lenis?.resize(); // a página ficou mais alta: a Lenis precisa medir de novo até onde dá para rolar
+
+    // os números das abas são contados a partir dos dados ("Dinossauros 12")
+    const total = galerias.reduce((n, g) => n + g.pecas.length, 0);
+    $$('.chip').forEach((c) => {
+      const g = galerias.find((x) => x.slug === c.dataset.filter);
+      $('small', c).textContent = c.dataset.filter === 'todos' ? total : (g ? g.pecas.length : 0);
+    });
+
+    abrirAbaPedida();
+    if (location.hash === '#acervo') setTimeout(() => destacar($('#acervo')), 300); // pisca a aba certa
+    pecas.forEach((p) => revelar.observe(p));
+    iniciarLightbox();
+
+    // link da busca para uma peça (ex.: exposicoes.html#mamute): ela só existe depois de montada
+    const alvo = location.hash && document.getElementById(decodeURIComponent(location.hash.slice(1)));
+    if (alvo && alvo.matches('.specimen')) {
+      alvo.classList.remove('is-hidden', 'is-hiding', 'reveal');
+      if (lenis) lenis.scrollTo(alvo, { offset: -alturaTopo() - 40, immediate: true });
+      else alvo.scrollIntoView({ block: 'center' });
+      setTimeout(() => destacar(alvo), 300);
+    }
+  }
+
   /* ---------- Galeria: filtros ---------- */
-  const pecas = $$('.specimen');
   $$('.chip').forEach((chip) => chip.addEventListener('click', () => {
     $$('.chip').forEach((c) => { c.classList.toggle('is-active', c === chip); c.setAttribute('aria-pressed', String(c === chip)); });
     const f = chip.dataset.filter;
@@ -320,6 +375,7 @@
         setTimeout(() => { if (p.classList.contains('is-hiding')) p.classList.add('is-hidden'); }, 400);
       }
     });
+    setTimeout(() => lenis?.resize(), 450); // a altura da página muda conforme a aba
     // guarda a aba no endereço (ex.: exposicoes.html?galeria=gelo), para dar para compartilhar
     const url = new URL(location.href);
     if (f === 'todos') url.searchParams.delete('galeria');
@@ -328,22 +384,28 @@
   }));
 
   // Abre direto na aba pedida pelo link (cards da Home: exposicoes.html?galeria=gelo)
-  const abaPedida = new URLSearchParams(location.search).get('galeria');
-  const chipPedido = abaPedida && $(`.chip[data-filter="${CSS.escape(abaPedida)}"]`);
-  if (chipPedido) {
+  function abrirAbaPedida() {
+    const abaPedida = new URLSearchParams(location.search).get('galeria');
+    const chipPedido = abaPedida && $(`.chip[data-filter="${CSS.escape(abaPedida)}"]`);
+    if (!chipPedido) return;
     $$('.chip').forEach((c) => { c.classList.toggle('is-active', c === chipPedido); c.setAttribute('aria-pressed', String(c === chipPedido)); });
     pecas.forEach((p) => p.classList.toggle('is-hidden', p.dataset.cat !== abaPedida)); // sem animação na abertura
+    lenis?.resize();
   }
 
   /* ---------- Galeria: lightbox ---------- */
-  const lb = $('.lightbox');
-  if (lb) {
+  function iniciarLightbox() {
+    const lb = $('.lightbox');
+    if (!lb) return;
     let atual = 0;
     const visiveis = () => pecas.filter((p) => !p.classList.contains('is-hidden') && !p.classList.contains('is-hiding'));
     function preencher(peca) {
       const d = $('.specimen__open', peca).dataset;
-      $('.lightbox__art img', lb).src = d.img;
-      $('.lightbox__art img', lb).alt = d.title;
+      const img = $('.lightbox__art img', lb);
+      $('.lightbox__art', lb).classList.toggle('is-empty', !d.img); // peça sem imagem: quadro preto
+      img.hidden = !d.img;
+      img.src = d.img || '';
+      img.alt = d.title;
       $('.tag', lb).textContent = d.cat;
       $('#lb-title', lb).textContent = d.title;
       $('.lightbox__era', lb).textContent = d.era;
@@ -374,6 +436,8 @@
       if (e.key === 'ArrowLeft') ir(-1);
     });
   }
+
+  if (galeria) montarGaleria();
 
   /* ---------- Poeira flutuando no fundo ---------- */
   const canvas = $('.dust');
@@ -507,12 +571,13 @@ document.querySelectorAll('.section-photo img, .hero__photo img').forEach((img) 
    ========================================================= */
 
 /* ---------- Busca (antes: função buscar() do includes/data.php) ---------- */
-window.buscarNoSite = (q, limite = 8) => {
+window.buscarNoSite = async (q, limite = 8) => {
   const normalizar = (s) => s.normalize('NFD').replace(/[̀-ͯ]/g, '').toLowerCase().replace(/[–—-]/g, ' ').replace(/\s+/g, ' ').trim();
   const termos = normalizar(q).split(' ').filter((t) => t.length >= 2);
   if (!termos.length) return [];
+  const indice = await window.Dados.indiceBusca();
   const resultados = [];
-  window.PALEO.indice.forEach((item) => {
+  indice.forEach((item) => {
     const titulo = normalizar(item.titulo);
     const corpo = normalizar(`${item.texto} ${item.secao}`);
     const chaves = normalizar(item.chaves);
@@ -530,7 +595,13 @@ window.buscarNoSite = (q, limite = 8) => {
 };
 
 /* ---------- "Aberto agora" e dia de hoje (antes: status_agora() no PHP) ---------- */
-(() => {
+(async () => {
+  let horarios;
+  try {
+    horarios = await window.Dados.horarios(); // data/horarios.json
+  } catch {
+    return; // sem os dados, fica o texto "Verificando horário…"
+  }
   // Usa o horário de Brasília, mesmo que o visitante esteja em outro fuso
   const partes = new Intl.DateTimeFormat('pt-BR', { timeZone: 'America/Sao_Paulo', weekday: 'short', hour: '2-digit', minute: '2-digit', hour12: false })
     .formatToParts(new Date());
@@ -538,7 +609,7 @@ window.buscarNoSite = (q, limite = 8) => {
   const nomeDia = partes.find((p) => p.type === 'weekday').value.replace('.', '').toLowerCase();
   const hoje = dias[nomeDia];
   const agora = `${partes.find((p) => p.type === 'hour').value.padStart(2, '0')}:${partes.find((p) => p.type === 'minute').value}`;
-  const h = window.PALEO.horarios[hoje];
+  const h = horarios[hoje];
 
   let aberto = false;
   let texto;
@@ -567,7 +638,7 @@ window.buscarNoSite = (q, limite = 8) => {
 })();
 
 /* ---------- Página de resultados (antes: search.php sem format=json) ---------- */
-(() => {
+(async () => {
   if (document.body.dataset.page !== 'busca') return;
   const q = (new URLSearchParams(location.search).get('q') || '').trim().slice(0, 80);
   const lista = document.querySelector('.search-page');
@@ -575,7 +646,7 @@ window.buscarNoSite = (q, limite = 8) => {
   const escapar = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
   if (!q) return;
   document.getElementById('busca').value = q;
-  const res = window.buscarNoSite(q, 30);
+  const res = await window.buscarNoSite(q, 30);
   titulo.innerHTML = `Resultados para <em>“${escapar(q)}”</em>`;
   titulo.insertAdjacentHTML('afterend', `<p>${res.length} resultado${res.length === 1 ? '' : 's'} encontrado${res.length === 1 ? '' : 's'}.</p>`);
   lista.innerHTML = res.length

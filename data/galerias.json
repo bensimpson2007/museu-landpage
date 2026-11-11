@@ -1,0 +1,18 @@
+[
+    {
+        "slug": "dinossauros",
+        "nome": "Dinossauros"
+    },
+    {
+        "slug": "gelo",
+        "nome": "Era do Gelo"
+    },
+    {
+        "slug": "mares",
+        "nome": "Mares Antigos"
+    },
+    {
+        "slug": "vestigios",
+        "nome": "Vestígios"
+    }
+]

@@ -1,0 +1,86 @@
+[
+    {
+        "id": "pegada",
+        "titulo": "Pegada tridáctila",
+        "era": "Jurássico · 140 milhões de anos",
+        "descricao": "Três dedos e 40 cm de comprimento: um terópode passou por aqui caminhando sobre lama mole.",
+        "imagem": "pegada.svg"
+    },
+    {
+        "id": "samambaia",
+        "titulo": "Samambaia fóssil",
+        "era": "Carbonífero · 300 milhões de anos",
+        "descricao": "Folhas como esta formavam as florestas que, comprimidas, viraram o carvão mineral de hoje.",
+        "imagem": "samambaia.svg"
+    },
+    {
+        "id": "coprolito",
+        "titulo": "Coprólito",
+        "era": "Cretáceo · 70 milhões de anos",
+        "descricao": "Fezes fossilizadas: dentro delas aparecem pedaços de osso que revelam o que o animal comia.",
+        "imagem": null
+    },
+    {
+        "id": "inseto-ambar",
+        "titulo": "Inseto no âmbar",
+        "era": "Cretáceo · 99 milhões de anos",
+        "descricao": "Preso na resina de uma árvore, o inseto ficou preservado com detalhes como pelos e asas.",
+        "imagem": null
+    },
+    {
+        "id": "gastrolitos",
+        "titulo": "Gastrólitos",
+        "era": "Jurássico · 150 milhões de anos",
+        "descricao": "Pedras lisas engolidas por saurópodes, que ajudavam a triturar as plantas dentro do estômago.",
+        "imagem": null
+    },
+    {
+        "id": "trilha-sauropode",
+        "titulo": "Trilha de pegadas de saurópode",
+        "era": "Cretáceo · 130 milhões de anos",
+        "descricao": "Uma sequência de pegadas mostra a direção, a velocidade e até o tamanho do grupo que passou.",
+        "imagem": null
+    },
+    {
+        "id": "tronco-petrificado",
+        "titulo": "Tronco petrificado",
+        "era": "Triássico · 230 milhões de anos",
+        "descricao": "A madeira foi trocada por minerais, célula por célula, até virar pedra com os anéis visíveis.",
+        "imagem": null
+    },
+    {
+        "id": "folha-ginkgo",
+        "titulo": "Folha de ginkgo",
+        "era": "Jurássico · 170 milhões de anos",
+        "descricao": "O ginkgo é um \"fóssil vivo\": a mesma planta ainda existe hoje, quase sem mudanças.",
+        "imagem": null
+    },
+    {
+        "id": "marcas-ondas",
+        "titulo": "Marcas de ondas fossilizadas",
+        "era": "Cretáceo · 120 milhões de anos",
+        "descricao": "Ondulações deixadas pela água na areia de uma praia antiga, endurecidas como pedra.",
+        "imagem": null
+    },
+    {
+        "id": "toca-fossil",
+        "titulo": "Toca fossilizada",
+        "era": "Permiano · 260 milhões de anos",
+        "descricao": "Um túnel escavado por um animal pequeno, preenchido por sedimento que depois virou rocha.",
+        "imagem": null
+    },
+    {
+        "id": "osso-mordida",
+        "titulo": "Osso com marca de mordida",
+        "era": "Cretáceo · 67 milhões de anos",
+        "descricao": "As marcas de dentes contam quem caçava quem e como os predadores se alimentavam.",
+        "imagem": null
+    },
+    {
+        "id": "impressao-pele",
+        "titulo": "Impressão de pele de hadrossauro",
+        "era": "Cretáceo · 68 milhões de anos",
+        "descricao": "A textura de escamas pequenas ficou gravada na lama antes de o corpo se decompor.",
+        "imagem": null
+    }
+]

@@ -52,9 +52,29 @@ https://github.com/sass/dart-sass/releases e descompacte em `%USERPROFILE%\ferra
 O scroll suave é feito pela biblioteca [Lenis](https://lenis.dev) (versão 1.3.4, carregada por CDN).
 A configuração fica no começo do `assets/js/main.js`.
 
-## Onde editar o conteúdo
+## Onde editar o conteúdo (pasta `data/`)
 
-Cada texto fica direto no HTML da página onde aparece. A exceção é `assets/js/dados.js`, que guarda os
-horários (para o "Aberto agora") e o índice do buscador. Se mudar um horário ou um texto, mude no HTML **e** no `dados.js`.
+![Antes e depois da arquitetura de dados](docs/arquitetura-dados.png)
 
-O cabeçalho e o rodapé estão copiados em cada página. Para mudar o menu, é preciso editar todas.
+Os dados do site ficam em arquivos JSON separados por assunto:
+
+```
+data/
+  horarios.json            dias e horários (usado no "Aberto agora" e no destaque de hoje)
+  galerias.json            as 4 galerias do acervo (nome e identificador)
+  acervo/
+    dinossauros.json       12 peças
+    gelo.json              12 peças
+    mares.json             12 peças
+    vestigios.json         12 peças
+  busca.json               textos das páginas para o buscador
+```
+
+- **Adicionar uma peça:** acrescente um item no JSON da galeria. Ela aparece sozinha na página de Exposições,
+  na contagem da aba e no buscador. Use `"imagem": null` para deixar o quadro preto até ter a foto.
+- O arquivo `assets/js/carregar-dados.js` é quem busca esses JSON (com `fetch`).
+- Por causa do `fetch`, o site **precisa ser aberto por um servidor** (ex.: http://localhost:8080).
+  Com dois cliques no `index.html`, a galeria e a busca não carregam.
+
+Os textos fixos das páginas (títulos, parágrafos, preços) continuam no HTML. O cabeçalho e o rodapé
+estão copiados em cada página: para mudar o menu, é preciso editar todas.

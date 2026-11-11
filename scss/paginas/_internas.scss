@@ -103,3 +103,18 @@
 /* Destaque ao chegar numa seção pelo buscador */
 .is-found { animation: found 2.2s var(--ease); }
 @keyframes found { 0%, 100% { box-shadow: none; } 20% { box-shadow: 0 0 0 3px var(--accent), 0 0 60px -10px var(--accent); } }
+
+// Peças ainda sem imagem: o quadro fica preto (data/acervo/*.json com "imagem": null)
+.specimen__art.is-empty,
+.lightbox__art.is-empty {
+  background: #000;
+}
+
+// Mensagem quando os JSON não carregam (ex.: site aberto com dois cliques, sem servidor)
+.gallery__erro {
+  grid-column: 1 / -1;
+  padding: 24px;
+  border: 1px dashed var(--line);
+  border-radius: var(--r);
+  color: var(--muted);
+}

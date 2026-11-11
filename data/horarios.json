@@ -1,0 +1,44 @@
+{
+    "1": {
+        "dia": "Segunda-feira",
+        "abre": null,
+        "fecha": null,
+        "nota": "Fechado para cuidado do acervo"
+    },
+    "2": {
+        "dia": "Terça-feira",
+        "abre": "09:00",
+        "fecha": "18:00",
+        "nota": "Entrada gratuita o dia todo"
+    },
+    "3": {
+        "dia": "Quarta-feira",
+        "abre": "09:00",
+        "fecha": "18:00",
+        "nota": ""
+    },
+    "4": {
+        "dia": "Quinta-feira",
+        "abre": "09:00",
+        "fecha": "18:00",
+        "nota": ""
+    },
+    "5": {
+        "dia": "Sexta-feira",
+        "abre": "09:00",
+        "fecha": "18:00",
+        "nota": ""
+    },
+    "6": {
+        "dia": "Sábado",
+        "abre": "09:00",
+        "fecha": "20:00",
+        "nota": "Noite no Museu: visita com lanternas às 18h"
+    },
+    "0": {
+        "dia": "Domingo",
+        "abre": "10:00",
+        "fecha": "17:00",
+        "nota": "Hora da História Kids às 11h e 15h"
+    }
+}

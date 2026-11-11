@@ -1,0 +1,86 @@
+[
+    {
+        "id": "amonite",
+        "titulo": "Amonite",
+        "era": "Jurássico · 180 milhões de anos",
+        "descricao": "Concha espiral de um molusco marinho. As câmaras internas controlavam a flutuação, como um submarino.",
+        "imagem": "amonite.svg"
+    },
+    {
+        "id": "trilobita",
+        "titulo": "Trilobita",
+        "era": "Cambriano · 500 milhões de anos",
+        "descricao": "Um dos primeiros animais com olhos complexos. Viveu nos oceanos por quase 300 milhões de anos.",
+        "imagem": "trilobita.svg"
+    },
+    {
+        "id": "peixe",
+        "titulo": "Peixe fossilizado",
+        "era": "Cretáceo · 110 milhões de anos",
+        "descricao": "Vindo da Chapada do Araripe, conserva até as finas espinhas das nadadeiras.",
+        "imagem": "peixe.svg"
+    },
+    {
+        "id": "dente-megalodonte",
+        "titulo": "Dente de megalodonte",
+        "era": "Mioceno · 15 milhões de anos",
+        "descricao": "Com 17 cm, pertenceu ao maior tubarão que já existiu, com cerca de 15 metros de comprimento.",
+        "imagem": null
+    },
+    {
+        "id": "cranio-mosassauro",
+        "titulo": "Crânio de Mosassauro",
+        "era": "Cretáceo · 70 milhões de anos",
+        "descricao": "Réptil marinho de até 15 metros, com uma segunda fileira de dentes no céu da boca.",
+        "imagem": null
+    },
+    {
+        "id": "nadadeira-plesiossauro",
+        "titulo": "Nadadeira de Plesiossauro",
+        "era": "Jurássico · 180 milhões de anos",
+        "descricao": "Quatro nadadeiras como remos levavam esse réptil de pescoço longo pelos mares rasos.",
+        "imagem": null
+    },
+    {
+        "id": "esqueleto-ictiossauro",
+        "titulo": "Esqueleto de Ictiossauro",
+        "era": "Jurássico · 190 milhões de anos",
+        "descricao": "Parecia um golfinho, mas era um réptil: um ótimo exemplo de evolução convergente.",
+        "imagem": null
+    },
+    {
+        "id": "rostro-belemnite",
+        "titulo": "Rostro de belemnite",
+        "era": "Jurássico · 170 milhões de anos",
+        "descricao": "A \"bala\" de calcita que sobrou de um parente antigo das lulas, muito comum em rochas marinhas.",
+        "imagem": null
+    },
+    {
+        "id": "lirio-do-mar",
+        "titulo": "Lírio-do-mar (crinoide)",
+        "era": "Carbonífero · 330 milhões de anos",
+        "descricao": "Parece uma planta, mas é um animal: um parente das estrelas-do-mar preso ao fundo do oceano.",
+        "imagem": null
+    },
+    {
+        "id": "ourico-fossil",
+        "titulo": "Ouriço-do-mar fóssil",
+        "era": "Cretáceo · 90 milhões de anos",
+        "descricao": "A carapaça em forma de estrela de cinco pontas ficou perfeitamente preservada em giz.",
+        "imagem": null
+    },
+    {
+        "id": "coral-fossil",
+        "titulo": "Coral fóssil",
+        "era": "Devoniano · 380 milhões de anos",
+        "descricao": "Recifes antigos como este formavam ecossistemas inteiros em mares quentes e rasos.",
+        "imagem": null
+    },
+    {
+        "id": "casco-archelon",
+        "titulo": "Casco de tartaruga marinha gigante",
+        "era": "Cretáceo · 75 milhões de anos",
+        "descricao": "O Archelon chegava a 4 metros e tinha um casco leve, feito de uma estrutura óssea vazada.",
+        "imagem": null
+    }
+]
