@@ -1,0 +1,22 @@
+// =========================================================
+// MUSEU PALEO · arquivo principal do SCSS
+// Ele não tem regras próprias: só junta os outros arquivos, NA ORDEM
+// (no CSS a ordem importa: o que vem depois vence em caso de empate).
+//
+// Para gerar o assets/css/style.css: dê dois cliques em compilar-css.bat
+// =========================================================
+
+@use 'base/tokens';
+@use 'base/base';
+@use 'layout/header';
+@use 'base/componentes';
+@use 'secoes/hero';
+@use 'secoes/museu';
+@use 'secoes/horarios';
+@use 'secoes/valores';
+@use 'secoes/kids';
+@use 'secoes/interesses';
+@use 'paginas/internas';
+@use 'layout/footer';
+@use 'responsivo';
+@use 'componentes/botao-github';

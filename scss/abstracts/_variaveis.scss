@@ -1,0 +1,23 @@
+// Variáveis e mixins do SCSS.
+// Diferente das variáveis CSS (--accent), estas só existem na hora de compilar:
+// o navegador nunca vê o $tela-tablet, ele recebe direto o valor 860px.
+
+// Larguras de tela onde o layout muda (breakpoints)
+$tela-desktop: 1080px;
+$tela-tablet: 860px;
+$tela-celular: 560px;
+
+// Mixin = um "molde" reaproveitável.
+// Em vez de escrever @media (max-width: 860px) { ... } em vários lugares,
+// escrevemos @include abaixo-de($tela-tablet) { ... }
+@mixin abaixo-de($largura) {
+  @media (max-width: $largura) {
+    @content;
+  }
+}
+
+@mixin acima-de($largura) {
+  @media (min-width: $largura + 1) {
+    @content;
+  }
+}

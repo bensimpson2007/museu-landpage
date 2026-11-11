@@ -7,6 +7,14 @@
   const body = document.body;
   const reduzido = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
+  /* ---------- Scroll suave (Lenis · https://lenis.dev) ----------
+     A Lenis troca o scroll "seco" do navegador por um movimento com inércia.
+     autoRaf: ela mesma cuida da animação a cada quadro.
+     Quem pede "reduzir movimento" no sistema continua com o scroll normal. */
+  const lenis = !reduzido && window.Lenis ? new Lenis({ autoRaf: true, lerp: 0.1 }) : null;
+  window.lenis = lenis;
+  const alturaTopo = () => ($('.topbar')?.offsetHeight || 0) - 20; // para o título não ficar atrás do menu
+
   /* ---------- Transição entre páginas ---------- */
   addEventListener('pageshow', (e) => { if (e.persisted) body.classList.remove('is-leaving'); });
 
@@ -25,7 +33,8 @@
           e.preventDefault();
           fecharMenu();
           history.pushState(null, '', url.hash);
-          alvo.scrollIntoView({ behavior: reduzido ? 'auto' : 'smooth', block: 'start' });
+          if (lenis) lenis.scrollTo(alvo, { offset: -alturaTopo(), duration: 1.4 });
+          else alvo.scrollIntoView({ block: 'start' });
           destacar(alvo);
         }
       }
@@ -350,11 +359,16 @@
       atual = visiveis().indexOf(p);
       preencher(p);
       lb.showModal();
+      lenis?.stop(); // a página de trás não rola enquanto a foto está aberta
     }));
-    $('.lightbox__close', lb).addEventListener('click', () => lb.close());
+    // ao fechar a foto (botão X, clique fora ou Esc), o scroll da página volta a funcionar
+    const fecharFoto = () => { lb.close(); lenis?.start(); };
+    lb.addEventListener('close', () => lenis?.start());
+    lb.addEventListener('cancel', () => lenis?.start());
+    $('.lightbox__close', lb).addEventListener('click', fecharFoto);
     $('.lightbox__prev', lb).addEventListener('click', () => ir(-1));
     $('.lightbox__next', lb).addEventListener('click', () => ir(1));
-    lb.addEventListener('click', (e) => { if (e.target === lb) lb.close(); });
+    lb.addEventListener('click', (e) => { if (e.target === lb) fecharFoto(); });
     lb.addEventListener('keydown', (e) => {
       if (e.key === 'ArrowRight') ir(1);
       if (e.key === 'ArrowLeft') ir(-1);

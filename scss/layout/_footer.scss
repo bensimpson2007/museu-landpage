@@ -1,0 +1,29 @@
+// Rodapé
+// Exemplo de ANINHAMENTO: tudo que é do rodapé fica dentro de .footer { }
+// e o & repete o nome do pai (&__grid vira .footer__grid).
+
+.footer {
+  border-top: 1px solid var(--line);
+  background: rgba(8, 6, 4, .85);
+  padding: 70px 0 30px;
+
+  &__grid {
+    max-width: 1200px; margin: 0 auto; padding: 0 28px;
+    display: grid; grid-template-columns: 1.4fr 1fr 1fr 1fr; gap: 40px;
+  }
+
+  h4 { font-size: .75rem; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); margin-bottom: 14px; }
+
+  p, a { display: block; color: var(--muted); font-size: .92rem; margin-bottom: 6px; }
+
+  a:hover { color: var(--ink); }
+
+  .logo { color: var(--ink); font-size: 1.45rem; display: inline-flex; }
+
+  &__slogan { margin-top: 14px; max-width: 280px; }
+
+  &__copy {
+    max-width: 1200px; margin: 50px auto 0; padding: 24px 28px 0;
+    border-top: 1px solid var(--line); color: var(--muted); font-size: .8rem;
+  }
+}

@@ -1,0 +1,74 @@
+// Ajustes para telas menores e para quem prefere menos movimento
+
+@use 'abstracts/variaveis' as *;
+
+/* ---------- Responsivo ---------- */
+@include abaixo-de($tela-desktop) {
+  .prices, .highlights { grid-template-columns: repeat(2, 1fr); }
+  .schedule, .guia { grid-template-columns: 1fr; }
+  .schedule__aside { position: static; }
+  .status { display: none; }
+}
+@include abaixo-de($tela-tablet) {
+  :root { --header-h: 124px; }
+  .topbar__inner { flex-wrap: wrap; gap: 12px; padding: 12px 16px; }
+  .burger { display: block; margin-left: auto; }
+  .search { order: 3; flex-basis: 100%; max-width: none; margin: 0; }
+  .search__kbd { display: none; }
+  .topbar.is-hidden { transform: none; }
+  .nav {
+    position: absolute; top: 100%; left: 0; right: 0; flex-direction: column; gap: 0; padding: 8px 16px 18px;
+    background: rgba(12, 10, 8, .97); border-bottom: 1px solid var(--line);
+    clip-path: inset(0 0 100% 0); opacity: 0; visibility: hidden;
+    transition: clip-path .5s var(--ease-out), opacity .3s, visibility 0s .5s;
+  }
+  .nav.is-open { clip-path: inset(0 0 0 0); opacity: 1; visibility: visible; transition: clip-path .5s var(--ease-out), opacity .3s; }
+  .nav a { padding: 14px 6px; border-bottom: 1px solid var(--line); font-size: 1.05rem; }
+  .nav__ind { display: none; }
+  .scene-dots { display: none; }
+  .wrap, .hero__inner { padding: 0 16px; }
+  .scene { padding-bottom: 90px; }
+
+  .hero__inner { flex-direction: column; align-items: flex-start; }
+  .hero__photo img { object-position: 50% 40%; }
+  .hero__sub { padding-left: 0; }
+  .hero__frame, .hero__cards { display: none; }
+  .about-intro { grid-template-columns: 1fr; gap: 40px; }
+  #museu, #guia { min-height: 0; padding: calc(var(--header-h) + 20px) 0 90px; }
+  .carousel { width: 100%; }
+  .carousel__track { height: auto; aspect-ratio: 4 / 5; }
+  .stats { gap: 26px; }
+
+  .kids, .pillars { grid-template-columns: 1fr; }
+  .fact { grid-template-columns: auto 1fr; }
+  .fact__btn { grid-column: 1 / -1; justify-self: start; }
+  .about-hero__grid { grid-template-columns: 1fr; }
+  .about-hero__art { max-width: 420px; }
+
+  .timeline::before { left: 6px; }
+  .timeline__item, .timeline__item:nth-child(even) { grid-template-columns: 1fr; gap: 10px; padding-left: 34px; }
+  .timeline__item::before { left: 6px; top: 12px; }
+  .timeline__year, .timeline__item:nth-child(even) .timeline__year { order: 0; text-align: left; font-size: 2.2rem; padding-top: 0; }
+  .timeline__item:nth-child(even) .timeline__card { order: 1; }
+
+  .lightbox__body { grid-template-columns: 1fr; padding: 18px; gap: 18px; max-height: calc(100vh - 40px); overflow-y: auto; }
+  .lightbox__art { aspect-ratio: 4 / 3; }
+  .lightbox__info { padding-right: 0; }
+  .lightbox__close { top: 10px; right: 10px; }
+  .lightbox__prev { left: 10px; top: 30%; }
+  .lightbox__next { right: 10px; top: 30%; }
+
+  .footer__grid { grid-template-columns: 1fr 1fr; }
+}
+@include abaixo-de($tela-celular) {
+  .prices, .highlights { grid-template-columns: 1fr; }
+  .footer__grid { grid-template-columns: 1fr; }
+  .hero__title { font-size: 3rem; }
+  .day { padding: 16px 18px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html { scroll-behavior: auto; }
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  .js .reveal { opacity: 1; transform: none; filter: none; }
+}

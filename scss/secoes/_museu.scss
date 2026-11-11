@@ -1,0 +1,87 @@
+// Seção "O museu": carrossel, texto e pontinhos laterais
+
+/* Carrossel de fotos (seção "O museu") */
+.carousel { position: relative; outline: none; width: calc(var(--foto-h) * .8); }
+.carousel__track {
+  position: relative; height: var(--foto-h); overflow: hidden; border-radius: 6px;
+  background: #0d0907; border: 1px solid rgba(160, 100, 70, .35);
+  box-shadow: 0 40px 80px -30px rgba(0, 0, 0, .9);
+}
+.carousel:focus-visible .carousel__track { border-color: var(--accent); }
+.carousel__slide { position: absolute; inset: 0; opacity: 0; transition: opacity 1s var(--ease); }
+.carousel__slide.is-active { opacity: 1; z-index: 1; }
+.carousel__slide img {
+  width: 100%; height: 100%; object-fit: cover; transform: scale(1.12);
+  transition: transform 6s linear; /* zoom lento enquanto a foto está na tela */
+}
+.carousel__slide.is-active img { transform: scale(1); }
+.carousel__slide::after { content: ""; position: absolute; inset: 0; background: linear-gradient(180deg, transparent 50%, rgba(3, 2, 2, .9)); }
+.carousel__slide figcaption {
+  position: absolute; left: 26px; right: 26px; bottom: 24px; z-index: 1; display: grid; gap: 4px;
+  opacity: 0; transform: translateY(14px); transition: opacity .6s .35s, transform .8s .35s var(--ease-out);
+}
+.carousel__slide.is-active figcaption { opacity: 1; transform: none; }
+.carousel__slide strong { font-family: "Playfair Display", Georgia, serif; font-weight: 600; font-size: 1.5rem; text-transform: uppercase; letter-spacing: .02em; }
+.carousel__slide span { color: #cdbfae; font-size: .92rem; }
+
+.carousel__bar { display: flex; align-items: center; gap: 18px; margin-top: 18px; }
+.carousel__count { font-family: "Playfair Display", Georgia, serif; font-size: .95rem; color: var(--muted); min-width: 58px; }
+.carousel__count b { color: var(--ink); font-weight: 600; }
+.carousel__dots { display: flex; gap: 6px; flex: 1; }
+.carousel__dots button { flex: 1; height: 18px; display: flex; align-items: center; }
+.carousel__dots i { display: block; width: 100%; height: 2px; background: rgba(241, 232, 216, .2); position: relative; overflow: hidden; }
+.carousel__dots i::after { content: ""; position: absolute; inset: 0; background: var(--ink); transform: scaleX(0); transform-origin: left; }
+.carousel__dots .is-done i::after { transform: scaleX(1); }
+.carousel__dots .is-active i::after { animation: progresso var(--dur, 5s) linear forwards; }
+.carousel.is-paused .carousel__dots .is-active i::after { animation-play-state: paused; }
+@keyframes progresso { to { transform: scaleX(1); } }
+.carousel__nav { display: flex; gap: 8px; }
+.carousel__nav button {
+  width: 44px; height: 44px; border: 1px solid rgba(241, 232, 216, .35); font-size: 1.1rem;
+  transition: background .3s, color .3s, border-color .3s;
+}
+.carousel__nav button:hover { background: var(--ink); color: #0b0806; border-color: var(--ink); }
+
+/* Seção logo abaixo: sobre o museu */
+/* Seção "O museu": texto + carrossel cabem numa tela só, centralizados */
+#museu { min-height: 100svh; padding: calc(var(--header-h) + 12px) 0 36px; }
+.about-intro {
+  --foto-h: clamp(320px, calc(100svh - var(--header-h) - 130px), 580px);
+  display: grid; grid-template-columns: minmax(0, 600px) auto; justify-content: center;
+  gap: clamp(40px, 5vw, 80px); align-items: center; max-width: 1280px;
+}
+.about-intro .hero__lead { font-size: 1rem; margin-bottom: 10px; }
+.about-intro .hero__cta { margin-top: 22px; }
+.about-intro .stats { margin-top: 28px; padding-top: 20px; gap: 32px; }
+.about-intro .stats dt { font-size: 2.2rem; }
+.about-intro__title { max-width: none; }
+.about-intro__title {
+  font-family: "Playfair Display", Georgia, serif; font-weight: 600; text-transform: uppercase;
+  font-size: clamp(1.9rem, 3vw, 3rem); line-height: 1.08; letter-spacing: .01em; margin: 14px 0 20px;
+}
+.about-intro__title em { color: inherit; } /* "ossos" sem cor de destaque */
+.hero__lead { color: var(--muted); font-size: 1.1rem; margin-bottom: 14px; }
+.hero__lead:first-of-type { color: var(--ink); }
+.hero__cta { display: flex; flex-wrap: wrap; gap: 14px; margin-top: 30px; }
+.stats { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 48px; padding-top: 28px; border-top: 1px solid var(--line); }
+.stats dt { font-family: var(--serif); font-size: 2.6rem; line-height: 1; color: var(--bone); }
+.stats dd { color: var(--muted); font-size: .85rem; margin-top: 6px; }
+.scroll-hint {
+  position: absolute; left: 50%; bottom: 28px; transform: translateX(-50%);
+  display: grid; justify-items: center; gap: 10px; font-size: .72rem; letter-spacing: .2em; text-transform: uppercase; color: var(--muted);
+}
+.scroll-hint span { width: 1px; height: 46px; background: linear-gradient(var(--accent), transparent); position: relative; overflow: hidden; }
+.scroll-hint span::after { content: ''; position: absolute; left: -1px; width: 3px; height: 12px; border-radius: 2px; background: var(--accent-2); animation: drip 2s var(--ease) infinite; }
+@keyframes drip { from { top: -12px; } to { top: 46px; } }
+
+/* Pontos de navegação entre cenários */
+.scene-dots { position: fixed; left: 22px; top: 50%; transform: translateY(-50%); z-index: 40; display: grid; gap: 16px; }
+.scene-dots a { position: relative; display: block; width: 10px; height: 10px; border-radius: 50%; border: 1px solid var(--muted); transition: background .4s, border-color .4s, transform .4s var(--ease-out); }
+.scene-dots a.is-active { background: var(--accent); border-color: var(--accent); transform: scale(1.35); box-shadow: 0 0 14px var(--accent); }
+.scene-dots span {
+  position: absolute; left: 22px; top: 50%; transform: translate(-6px, -50%); opacity: 0; pointer-events: none;
+  font-size: .72rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; white-space: nowrap; color: var(--ink);
+  transition: opacity .3s, transform .4s var(--ease-out);
+}
+.scene-dots a:hover span { opacity: 1; transform: translate(0, -50%); }
+.scene-dots a.is-active span { color: var(--accent); }

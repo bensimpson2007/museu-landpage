@@ -1,0 +1,45 @@
+// Horário de funcionamento (horarios.html)
+
+/* ---------- Guia de horários ---------- */
+.schedule { display: grid; grid-template-columns: 1.5fr 1fr; gap: 40px; align-items: start; }
+.days { list-style: none; display: grid; gap: 10px; }
+.day {
+  display: grid; grid-template-columns: 1fr auto; gap: 2px 20px; align-items: center;
+  padding: 18px 24px; border-radius: var(--r); background: var(--surface); border: 1px solid var(--line);
+  transition: border-color .4s, background .4s, transform .5s var(--ease-out), opacity 1s var(--ease), filter 1s var(--ease);
+}
+.day:hover { transform: translateX(6px); border-color: color-mix(in srgb, var(--accent) 45%, transparent); }
+.day__name { font-weight: 700; }
+.day__name b { margin-left: 8px; font-size: .68rem; letter-spacing: .14em; text-transform: uppercase; color: var(--on-accent); background: var(--accent); padding: 2px 8px; border-radius: 999px; vertical-align: 2px; }
+.day__hours { font-family: var(--serif); font-size: 1.4rem; color: var(--bone); }
+.day__note { grid-column: 1 / -1; font-size: .86rem; color: var(--accent-2); opacity: .85; }
+.day.is-today { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); box-shadow: 0 0 40px -18px var(--accent); }
+.day.is-closed { opacity: .55; }
+.js .day.is-closed.is-in { opacity: .55; }
+.day.is-closed .day__hours { color: var(--muted); font-family: var(--sans); font-size: .95rem; font-weight: 600; }
+
+.schedule__aside { position: sticky; top: calc(var(--header-h) + 24px); padding: 32px; border-radius: var(--r-lg); background: var(--surface); border: 1px solid var(--line); }
+.now { display: grid; grid-template-columns: auto 1fr; align-items: center; column-gap: 12px; padding-bottom: 24px; margin-bottom: 24px; border-bottom: 1px solid var(--line); }
+.now strong { font-family: var(--serif); font-weight: 400; font-size: 1.6rem; }
+.now small { grid-column: 2; color: var(--muted); font-size: .8rem; }
+.schedule__aside h3 { font-size: 1.4rem; margin-bottom: 14px; }
+.tips { list-style: none; display: grid; gap: 12px; color: var(--muted); font-size: .95rem; }
+.tips li { padding-left: 22px; position: relative; }
+.tips li::before { content: ''; position: absolute; left: 0; top: .7em; width: 10px; height: 4px; border-radius: 2px; background: var(--accent); }
+
+/* Guia de horários: texto + dicas à esquerda, dias à direita, tudo numa tela */
+#guia { min-height: 100svh; padding: calc(var(--header-h) + 12px) 0 32px; }
+.guia { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.05fr); gap: clamp(32px, 4vw, 64px); align-items: center; }
+.guia .section-head { margin-bottom: 22px; }
+.guia .section-head h2 { font-size: clamp(2rem, 3.4vw, 3.2rem); margin: 12px 0 12px; font-family: "Playfair Display", Georgia, serif; font-weight: 600; text-transform: uppercase; letter-spacing: .01em; }
+.guia .section-head h2 em { font-style: normal; } /* sem itálico, igual ao "Bem-vindo ao Museu Paleo" */
+.guia .section-head p { font-size: .98rem; }
+.guia .schedule__aside { position: static; padding: 22px 26px; }
+.guia .now { padding-bottom: 14px; margin-bottom: 14px; }
+.guia .now strong { font-size: 1.35rem; }
+.guia .schedule__aside h3 { font-size: 1.15rem; margin-bottom: 10px; }
+.guia .tips { gap: 6px; font-size: .88rem; }
+.guia .days { gap: 7px; }
+.guia .day { padding: 11px 20px; border-radius: 14px; }
+.guia .day__hours { font-size: 1.15rem; }
+.guia .day__note { font-size: .78rem; }

@@ -1,0 +1,29 @@
+// Paleo Kids
+
+/* ---------- Kids ---------- */
+#kids h2 em { color: var(--accent-2); }
+.kids { display: grid; grid-template-columns: repeat(3, 1fr); gap: 20px; }
+.kid-card {
+  padding: 34px 30px; border-radius: 32px; background: rgba(201, 184, 255, .07); border: 1px solid rgba(201, 184, 255, .18);
+  transition: transform .6s var(--ease-out), border-color .4s, opacity 1s var(--ease), filter 1s var(--ease);
+}
+.kid-card:hover { transform: translateY(-8px) rotate(-1.2deg); border-color: var(--accent); }
+.kid-card:nth-child(2):hover { transform: translateY(-8px) rotate(1.2deg); }
+.kid-card__icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 20px; background: var(--accent); color: #241a3d; margin-bottom: 22px; transition: transform .6s var(--ease-out); }
+.kid-card:hover .kid-card__icon { transform: rotate(-10deg) scale(1.08); }
+.kid-card__icon svg { width: 32px; height: 32px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+.kid-card h3 { font-size: 1.6rem; margin-bottom: 10px; }
+.kid-card p { color: var(--muted); }
+
+.fact {
+  display: grid; grid-template-columns: auto 1fr auto; gap: 26px; align-items: center;
+  margin-top: 28px; padding: 26px 30px; border-radius: 32px;
+  background: linear-gradient(120deg, rgba(255, 207, 92, .13), rgba(201, 184, 255, .1)); border: 1px solid rgba(255, 207, 92, .3);
+}
+.fact__foot { width: 64px; transform: rotate(-12deg); transition: transform .6s var(--ease-out); }
+.fact.is-bump .fact__foot { animation: stomp .6s var(--ease-out); }
+@keyframes stomp { 30% { transform: rotate(-12deg) translateY(-14px) scale(1.1); } 60% { transform: rotate(-12deg) translateY(2px) scale(.96); } }
+.fact__label { font-size: .75rem; font-weight: 800; letter-spacing: .18em; text-transform: uppercase; color: var(--accent); }
+.fact__text { font-family: var(--serif); font-size: 1.45rem; line-height: 1.3; transition: opacity .35s, transform .45s var(--ease-out); }
+.fact__text.is-swapping { opacity: 0; transform: translateY(10px); }
+.fact__btn { white-space: nowrap; }

@@ -1,0 +1,32 @@
+// Cores, fontes e medidas do site (variáveis CSS que mudam com o cenário)
+
+/* =========================================================
+   MUSEU PALEO · estilos
+   Tema escuro com "cenários" que mudam conforme o scroll.
+   ========================================================= */
+
+/* Cores animáveis (a troca de cenário faz transição suave) */
+@property --accent    { syntax: '<color>'; inherits: true; initial-value: #e0a458; }
+@property --accent-2  { syntax: '<color>'; inherits: true; initial-value: #f3d9a4; }
+@property --bg        { syntax: "<color>"; inherits: true; initial-value: #030202; }
+
+:root {
+  --bg: #030202;
+  --surface: rgba(255, 244, 222, .045);
+  --surface-2: rgba(255, 244, 222, .08);
+  --line: rgba(255, 236, 200, .12);
+  --ink: #f1e8d8;
+  --muted: #b2a48f;
+  --bone: #e6d6b6;
+  --accent: #e0a458;
+  --accent-2: #f3d9a4;
+  --on-accent: #1a1209;
+
+  --serif: 'Playfair Display', Georgia, serif; /* mesma fonte do "Bem-vindo ao Museu Paleo" */
+  --sans: 'Manrope', system-ui, -apple-system, sans-serif;
+  --ease: cubic-bezier(.2, .7, .2, 1);
+  --ease-out: cubic-bezier(.16, 1, .3, 1);
+  --r: 18px;
+  --r-lg: 28px;
+  --header-h: 128px;
+}
