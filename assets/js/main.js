@@ -280,14 +280,17 @@
   }
 
   /* ---------- Brilho que segue o mouse nos cartões ---------- */
-  $$('.price, .highlight, .kid-card, .specimen__open, .pillar, .timeline__card, .day').forEach((card) => {
-    card.classList.add('glow');
-    card.addEventListener('pointermove', (e) => {
-      const r = card.getBoundingClientRect();
-      card.style.setProperty('--mx', `${e.clientX - r.left}px`);
-      card.style.setProperty('--my', `${e.clientY - r.top}px`);
-    });
-  });
+  // Um único "ouvinte" para a página inteira, em vez de um por cartão (vale também para os
+  // cartões da galeria, que são criados depois a partir dos JSON)
+  const comBrilho = '.price, .highlight, .kid-card, .specimen__open, .pillar, .timeline__card, .day';
+  $$(comBrilho).forEach((card) => card.classList.add('glow'));
+  document.addEventListener('pointermove', (e) => {
+    const card = e.target.closest?.('.glow');
+    if (!card) return;
+    const r = card.getBoundingClientRect();
+    card.style.setProperty('--mx', `${e.clientX - r.left}px`);
+    card.style.setProperty('--my', `${e.clientY - r.top}px`);
+  }, { passive: true });
 
   /* ---------- Curiosidades Kids ---------- */
   const fato = $('.fact__text');
@@ -336,6 +339,7 @@
 
     galeria.innerHTML = galerias.flatMap((g) => g.pecas.map((p, i) => cardPeca(p, g, i))).join('');
     pecas = $$('.specimen', galeria);
+    $$('.specimen__open', galeria).forEach((c) => c.classList.add('glow')); // brilho que segue o mouse
     lenis?.resize(); // a página ficou mais alta: a Lenis precisa medir de novo até onde dá para rolar
 
     // os números das abas são contados a partir dos dados ("Dinossauros 12")
@@ -458,8 +462,14 @@
     for (let i = 0; i < n; i++) {
       ps.push({ x: Math.random(), y: Math.random(), r: Math.random() * 1.6 + 0.4, v: Math.random() * 0.00025 + 0.00008, a: Math.random() * 0.5 + 0.15, o: Math.random() * Math.PI * 2 });
     }
-    setInterval(() => { cor = getComputedStyle(body).getPropertyValue('--accent').trim() || cor; }, 400);
+    // A cor da poeira acompanha a cor de destaque do cenário. Em vez de ler o estilo da página
+    // a cada 0,4 s (caro), só lemos durante a transição de 1,2 s depois que o cenário muda.
+    const lerCor = () => { cor = getComputedStyle(body).getPropertyValue('--accent').trim() || cor; };
+    let lerAte = performance.now() + 1400;
+    new MutationObserver(() => { lerAte = performance.now() + 1400; }).observe(body, { attributes: true, attributeFilter: ['data-scene'] });
+    lerCor();
     const desenhar = (t) => {
+      if (t < lerAte) lerCor();
       ctx.clearRect(0, 0, w, h);
       ctx.fillStyle = cor;
       ps.forEach((p) => {
@@ -661,13 +671,18 @@ window.buscarNoSite = async (q, limite = 8) => {
   const botao = document.querySelector('.dev-sync');
   if (!botao || !['localhost', '127.0.0.1', '[::1]'].includes(location.hostname)) return;
   const badge = botao.querySelector('.dev-sync__badge');
-  fetch('sync.php', { method: 'POST', headers: { 'X-Museu-Sync': '1' }, body: new URLSearchParams({ acao: 'status' }) })
+  // O servidor local (php -S) atende um pedido por vez e o git demora quase 1 s.
+  // Por isso só perguntamos DEPOIS que a página, as imagens e os JSON já carregaram.
+  const verificar = () => fetch('sync.php', { method: 'POST', headers: { 'X-Museu-Sync': '1' }, body: new URLSearchParams({ acao: 'contar' }) })
     .then((r) => r.json())
-    .then(({ ok, arquivos }) => {
+    .then(({ ok, pendentes }) => {
       if (!ok) return;
       botao.hidden = false;
-      badge.hidden = !arquivos.length;
-      badge.textContent = arquivos.length;
+      badge.hidden = !pendentes;
+      badge.textContent = pendentes;
     })
     .catch(() => {}); // sem servidor PHP (ex.: abrindo o arquivo direto): o botão continua escondido
+  const depoisDeCarregar = () => setTimeout(verificar, 1500);
+  if (document.readyState === 'complete') depoisDeCarregar();
+  else addEventListener('load', depoisDeCarregar, { once: true });
 })();

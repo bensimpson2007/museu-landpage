@@ -43,6 +43,12 @@ function git(array $args): array
 $acao = $_POST['acao'] ?? 'status';
 $log = [];
 
+// Versão leve para o número do botão: só 1 comando git (o "status" completo roda 4 e é usado pelo painel)
+if ($acao === 'contar') {
+    [, $mudancas] = git(['status', '--porcelain']);
+    responder(200, ['ok' => true, 'pendentes' => count(array_filter(preg_split('/\R/', $mudancas)))]);
+}
+
 if ($acao === 'status') {
     $nomes = ['M' => 'alterado', 'A' => 'novo', 'D' => 'apagado', 'R' => 'renomeado', '??' => 'novo'];
     [, $mudancas] = git(['status', '--porcelain']);

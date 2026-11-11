@@ -15,13 +15,13 @@ if not exist "%SASS%" if not "%SASS%"=="sass" (
 
 if /i "%~1"=="vigiar" (
   echo Vigiando a pasta scss... salve um arquivo .scss e o CSS e atualizado. Ctrl+C para parar.
-  call "%SASS%" --no-source-map --style=expanded --watch scss/main.scss assets/css/style.css
+  call "%SASS%" --no-source-map --style=compressed --watch scss/main.scss assets/css/style.css
   goto fim
 )
 
 echo.
 echo Compilando scss\main.scss para assets\css\style.css...
-call "%SASS%" --no-source-map --style=expanded scss/main.scss assets/css/style.css && (
+call "%SASS%" --no-source-map --style=compressed scss/main.scss assets/css/style.css && (
   echo.
   echo Pronto! CSS atualizado.
 ) || (
